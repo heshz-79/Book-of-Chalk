@@ -1,13 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book of Chalk</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book of Chalk</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IM+Fell+English&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #080706;
+}
+
+body {
+    font-family: "Cormorant Garamond", serif;
+    color: #d8d0c0;
+}
+
+/* MAIN SCENE */
+
+.scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(60,52,42,.22) 0%,
+            rgba(10,9,8,.85) 65%,
+            #030303 100%
+        );
+}
+
+/* ATMOSPHERIC VIGNETTE */
+
+.scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,.45) 75%,
+            rgba(0,0,0,.9) 100%
+        );
+
+    z-index: 10;
+}
+
+/* HERO IMAGE */
+
+.book-scene {
+    position: absolute;
+    inset: 0;
+
+    background-image: url("book-of-chalk-hero.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    filter: brightness(.72) contrast(1.08) saturate(.78);
+
+    transform: scale(1.015);
+}
+
+/* VERY SUBTLE MOVEMENT */
+
+.book-scene::after {
+    content: "";
+    position: absolute;
+    inset: -2%;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            transparent 45%,
+            rgba(0,0,0,.32) 100%
+        );
+
+    animation: breathe 12s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+    from {
+        transform: scale(1);
+        opacity: .65;
+    }
+
+    to {
+        transform: scale(1.025);
+        opacity: .9;
+    }
+}
+
+/* TOP TITLE */
+
+.title {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    text-align: center;
+    pointer-events: none;
+
+    opacity: .82;
+}
+
+.title h1 {
+    font-family: "IM Fell English", serif;
+    font-size: clamp(25px, 3vw, 42px);
+    font-weight: 400;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,.9);
+}
+
+.title p {
+    margin-top: 5px;
+
+    font-size: 14px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+
+    opacity: .65;
+}
+
+/* HINT */
+
+.enter-hint {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+
+    opacity: .55;
+
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%,100% {
+        opacity: .35;
+    }
+
+    50% {
+        opacity: .75;
+    }
+}
+
+/* CLICKABLE AREAS */
+
+.hotspot {
+    position: absolute;
+    z-index: 15;
+
+    cursor: pointer;
+
+    border: 1px solid transparent;
+
+    transition:
+        border-color .4s ease,
+        background .4s ease,
+        box-shadow .4s ease;
+}
+
+.hotspot:hover {
+    border-color: rgba(220,210,190,.28);
+
+    background: rgba(255,255,255,.025);
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,.45),
+        inset 0 0 20px rgba(255,255,255,.03);
+}
+
+/*
+    BOOK
+    approximate position based on current artwork
+*/
+
+.book-hotspot {
+    width: 57%;
+    height: 63%;
+
+    left: 21%;
+    top: 17%;
+
+    transform: rotate(-1deg);
+}
+
+/* DOCUMENTS */
+
+.document-left {
+    left: 0;
+    bottom: 5%;
+    width: 23%;
+    height: 32%;
+}
+
+.document-right {
+    right: 0;
+    top: 8%;
+    width: 28%;
+    height: 27%;
+}
+
+.document-bottom {
+    right: 9%;
+    bottom: 0;
+    width: 28%;
+    height: 25%;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(0,0,0,.82);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+
+    width: min(720px, 92vw);
+    max-height: 80vh;
+
+    overflow: auto;
+
+    padding: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #181511,
+            #0c0b09
+        );
+
+    border: 1px solid rgba(200,190,170,.18);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.8);
+
+    transform: translateY(20px);
+
+    transition: transform .4s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    background: none;
+    border: none;
+
+    color: #aaa;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.modal-label {
+    font-size: 12px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+
+    opacity: .45;
+
+    margin-bottom: 18px;
+}
+
+.modal-content h2 {
+    font-family: "IM Fell English", serif;
+
+    font-size: 34px;
+    font-weight: 400;
+
+    margin-bottom: 25px;
+}
+
+.modal-content p {
+    font-size: 20px;
+    line-height: 1.65;
+
+    color: #bdb5a7;
+}
+
+.warning {
+    margin-top: 30px;
+
+    font-family: monospace;
+    font-size: 14px;
+
+    color: #aaa;
+
+    opacity: .7;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    html, body {
+        overflow: hidden;
+    }
+
+    .book-scene {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .title {
+        top: 24px;
+    }
+
+    .title h1 {
+        font-size: 22px;
+        letter-spacing: .15em;
+    }
+
+    .title p {
+        font-size: 10px;
+    }
+
+    .enter-hint {
+        bottom: 22px;
+        font-size: 10px;
+    }
+
+    .book-hotspot {
+        width: 75%;
+        height: 48%;
+        left: 12%;
+        top: 25%;
+    }
+
+    .document-left {
+        width: 25%;
+        height: 20%;
+        bottom: 8%;
+    }
+
+    .document-right {
+        width: 28%;
+        height: 18%;
+        top: 15%;
+    }
+
+    .document-bottom {
+        width: 30%;
+        height: 17%;
+    }
+
+    .modal-content {
+        padding: 30px 24px;
+    }
+
+    .modal-content h2 {
+        font-size: 28px;
+    }
+
+    .modal-content p {
+        font-size: 17px;
+    }
+}
+</style>
 </head>
 
 <body>
-  <h1>Book of Chalk</h1>
-  <p>The book is not finished.</p>
+
+<div class="scene">
+
+    <!-- THE ACTUAL BOOK OF CHALK IMAGE -->
+    <div class="book-scene"></div>
+
+    <!-- TITLE -->
+    <div class="title">
+        <h1>Book of Chalk</h1>
+        <p>an unfinished record</p>
+    </div>
+
+    <!-- INVISIBLE INTERACTIVE AREAS -->
+
+    <div
+        class="hotspot book-hotspot"
+        onclick="openModal('book')"
+        aria-label="Open the Book of Chalk">
+    </div>
+
+    <div
+        class="hotspot document-left"
+        onclick="openModal('warning')"
+        aria-label="Read document">
+    </div>
+
+    <div
+        class="hotspot document-right"
+        onclick="openModal('photograph')"
+        aria-label="Examine photograph">
+    </div>
+
+    <div
+        class="hotspot document-bottom"
+        onclick="openModal('record')"
+        aria-label="Read record">
+    </div>
+
+    <div class="enter-hint">
+        click the book
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div class="modal-label" id="modal-label"></div>
+
+        <h2 id="modal-title"></h2>
+
+        <p id="modal-text"></p>
+
+        <div class="warning" id="modal-warning"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const modal = document.getElementById("modal");
+const label = document.getElementById("modal-label");
+const title = document.getElementById("modal-title");
+const text = document.getElementById("modal-text");
+const warning = document.getElementById("modal-warning");
+
+const entries = {
+
+    book: {
+        label: "BOOK OF CHALK",
+        title: "The book is not finished.",
+        text:
+        "Some pages have been written. Some have been erased. Some were never supposed to exist.",
+        warning:
+        "ENTRY STATUS: UNSTABLE"
+    },
+
+    warning: {
+        label: "DOCUMENT 01",
+        title: "DO NOT READ THIS.",
+        text:
+        "The note appears to have been written in a hurry. Several lines have been crossed out. The final sentence is impossible to decipher.",
+        warning:
+        "FOUND BESIDE THE BOOK"
+    },
+
+    photograph: {
+        label: "ARTIFACT",
+        title: "It was not here yesterday.",
+        text:
+        "An old photograph. No date. No names. The people in the photograph are impossible to identify.",
+        warning:
+        "IMAGE RECORD: UNKNOWN"
+    },
+
+    record: {
+        label: "RECORD — 03:17",
+        title: "Something changed.",
+        text:
+        "The page contains several dates, numbers and fragments of handwriting. One of the dates appears to be from a year that has not happened yet.",
+        warning:
+        "ARCHIVE ERROR"
+    }
+
+};
+
+function openModal(type) {
+
+    const entry = entries[type];
+
+    label.textContent = entry.label;
+    title.textContent = entry.title;
+    text.textContent = entry.text;
+    warning.textContent = entry.warning;
+
+    modal.classList.add("active");
+}
+
+function closeModal() {
+    modal.classList.remove("active");
+}
+
+modal.addEventListener("click", function(e) {
+
+    if (e.target === modal) {
+        closeModal();
+    }
+
+});
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key === "Escape") {
+        closeModal();
+    }
+
+});
+
+</script>
+
 </body>
 </html>
