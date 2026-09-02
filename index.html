@@ -5,245 +5,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
-<title>Book of Chalk</title>
+<title>The Book of Chalk</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IM+Fell+English&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
+    margin: 0;
     overflow: hidden;
     background: #080706;
 }
 
 body {
-    font-family: "Cormorant Garamond", serif;
-    color: #d8d0c0;
-}
-
-.scene {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(60,52,42,.22) 0%,
-            rgba(10,9,8,.85) 65%,
-            #030303 100%
-        );
-}
-
-.scene::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 35%,
-            rgba(0,0,0,.45) 75%,
-            rgba(0,0,0,.9) 100%
-        );
-
-    z-index: 10;
-}
-
-.book-scene {
-    position: absolute;
-    inset: 0;
-
-    background-image: url("book-of-chalk-hero.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    filter: brightness(.72) contrast(1.08) saturate(.78);
-
-    transform: scale(1.015);
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
-
-.book-scene::after {
-    content: "";
-    position: absolute;
-    inset: -2%;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 45%,
-            transparent 45%,
-            rgba(0,0,0,.32) 100%
-        );
-
-    animation: breathe 12s ease-in-out infinite alternate;
-}
-
-@keyframes breathe {
-    from {
-        transform: scale(1);
-        opacity: .65;
-    }
-
-    to {
-        transform: scale(1.025);
-        opacity: .9;
-    }
-}
-
-.title {
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    z-index: 20;
-
-    text-align: center;
-    pointer-events: none;
-
-    opacity: .82;
-
-    transition: opacity .8s ease;
-}
-
-.title h1 {
     font-family: "IM Fell English", serif;
-    font-size: clamp(25px, 3vw, 42px);
-    font-weight: 400;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-
-    text-shadow:
-        0 2px 8px rgba(0,0,0,.9);
+    color: #c9c7bb;
 }
 
-.title p {
-    margin-top: 5px;
-
-    font-size: 14px;
-    letter-spacing: .28em;
-    text-transform: uppercase;
-
-    opacity: .65;
-}
-
-.enter-hint {
-    position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    z-index: 20;
-
-    font-size: 13px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-
-    opacity: .55;
-
-    animation: pulse 4s ease-in-out infinite;
-
-    transition: opacity .6s ease;
-}
-
-@keyframes pulse {
-    0%,100% {
-        opacity: .35;
-    }
-
-    50% {
-        opacity: .75;
-    }
-}
-
-.hotspot {
-    position: absolute;
-    z-index: 15;
-
-    cursor: pointer;
-
-    border: none;
-    background: transparent;
-}
-
-.book-hotspot {
-    width: 57%;
-    height: 63%;
-
-    left: 21%;
-    top: 17%;
-
-    transform: rotate(-1deg);
-}
-
-.document-left {
-    left: 0;
-    bottom: 5%;
-    width: 23%;
-    height: 32%;
-}
-
-.document-right {
-    right: 0;
-    top: 8%;
-    width: 28%;
-    height: 27%;
-}
-
-.document-bottom {
-    right: 9%;
-    bottom: 0;
-    width: 28%;
-    height: 25%;
-}
-
-
-/* =========================================================
+/* =========================
    BOOK VIEW
-   ========================================================= */
+========================= */
 
 .book-view {
     position: fixed;
     inset: 0;
-
-    z-index: 200;
-
+    width: 100%;
+    height: 100%;
+    background: #080706;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 4vh 5vw;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(65,54,40,.35) 0%,
-            rgba(12,10,8,.96) 72%,
-            #020202 100%
-        );
-
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
+    z-index: 200;
+    overflow: hidden;
 }
 
 .book-view.active {
@@ -252,21 +54,17 @@ body {
     pointer-events: auto;
 }
 
-
-/* =========================================================
+/* =========================
    BOOK SCROLL CONTAINER
-   ========================================================= */
+========================= */
 
 .book-scroll {
     width: 100%;
     height: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
-
     scrollbar-width: none;
 }
 
@@ -274,239 +72,133 @@ body {
     display: none;
 }
 
-
-/* =========================================================
+/* =========================
    BOOK
-   ========================================================= */
+========================= */
 
 .book {
     position: relative;
-
-    width: min(1200px, 94vw);
+    width: 92vw;
+    max-width: 1400px;
     aspect-ratio: 3 / 2;
-
-    max-height: 82vh;
-
-    display: flex;
+    flex-shrink: 0;
 
     background-image: url("book-page.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
+    transform: perspective(1200px) rotateX(1deg) scale(.98);
+
     box-shadow:
-        0 35px 100px rgba(0,0,0,.9),
-        0 0 120px rgba(0,0,0,.55);
+        0 30px 80px rgba(0,0,0,.8),
+        0 10px 30px rgba(0,0,0,.6);
 
-    transform:
-        perspective(1800px)
-        rotateX(2deg)
-        scale(.94);
-
-    transition:
-        transform 1.2s cubic-bezier(.2,.8,.2,1);
+    overflow: hidden;
 }
 
 .book-view.active .book {
-    transform:
-        perspective(1800px)
-        rotateX(1deg)
-        scale(1);
+    transform: perspective(1200px) rotateX(1deg) scale(1);
 }
 
-
-/* =========================================================
-   SPREADS
-   ========================================================= */
-
-.spread {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: opacity .15s ease;
-}
-
-.spread.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* =========================================================
+/* =========================
    PAGES
-   ========================================================= */
+========================= */
 
 .page {
-    position: relative;
-
+    position: absolute;
+    top: 0;
+    bottom: 0;
     width: 50%;
-    height: 100%;
-
     padding: 7% 10%;
-
-    overflow: hidden;
-
-    color: #c9c7bb;
-    background: transparent;
-}
-
-.page-content {
-    position: relative;
-
-    z-index: 5;
-
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
 }
 
 .page.left {
+    left: 0;
     cursor: pointer;
     padding-left: 15%;
 }
 
 .page.right {
+    right: 0;
     cursor: pointer;
 }
 
-.book-header {
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.page-content {
     position: relative;
-    z-index: 5;
+    width: 100%;
+    height: 100%;
+}
 
-    font-family: "IM Fell English", serif;
-
-    font-size: clamp(17px, 1.65vw, 24px);
-
-    font-weight: 400;
-
-    letter-spacing: .12em;
-
-    color: #c7c5b9;
-
-    margin-bottom: 8px;
-
-    text-shadow:
-        0 1px 4px rgba(0,0,0,.75);
+.book-header {
+    font-size: clamp(18px, 2vw, 28px);
+    letter-spacing: .08em;
+    margin-bottom: 10px;
+    color: #c9c7bb;
 }
 
 .fragment {
-    position: relative;
-    z-index: 5;
-
-    font-family: "IM Fell English", serif;
-
     font-size: 9px;
-
-    letter-spacing: .22em;
-
-    text-transform: uppercase;
-
-    color: #aaa99f;
-
-    opacity: .72;
-
-    margin-bottom: 32px;
+    letter-spacing: .16em;
+    margin-bottom: 28px;
+    opacity: .8;
 }
 
 .manuscript {
-    position: relative;
-    z-index: 5;
-
-    width: 100%;
-    max-width: 330px;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: clamp(13px, 1.2vw, 17px);
-
-    line-height: 1.75;
-
-    font-weight: 400;
-
-    color: #c9c7bb;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.85);
+    width: 82%;
+    font-size: clamp(14px, 1.35vw, 19px);
+    line-height: 1.55;
+    color: #c7c5b9;
 }
 
-.manuscript em {
-    font-style: italic;
-    color: #d0cec2;
+.manuscript p {
+    margin: 0 0 18px;
 }
+
+/* =========================
+   RIGHT TEXT
+========================= */
 
 .right-text {
-    position: relative;
-
-    z-index: 5;
-
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: flex-start;
-
-    height: 100%;
-
-    padding-bottom: 20px;
+    padding-bottom: 5%;
 }
 
 .right-text p {
-    width: 100%;
-    max-width: 310px;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: clamp(14px, 1.3vw, 19px);
-
-    line-height: 1.8;
-
-    font-style: italic;
-
-    color: #c5c3b7;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.85);
+    width: 82%;
+    font-size: clamp(14px, 1.35vw, 19px);
+    line-height: 1.55;
+    color: #c7c5b9;
+    margin: 0;
 }
 
 .time-clue {
-    margin-top: 45px;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: 10px;
-
-    letter-spacing: .38em;
-
-    color: #aaa99f;
-
-    opacity: .65;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.8);
+    margin-top: 28px;
+    font-size: 9px;
+    letter-spacing: .3em;
+    opacity: .8;
 }
 
-
-/* =========================================================
+/* =========================
    FRAGMENT I
-   ========================================================= */
+========================= */
 
 .fragment-one-left .page-content {
     transform: translateY(4cm);
 }
 
-
-/* =========================================================
+/* =========================
    FRAGMENT II
-   ========================================================= */
+========================= */
 
 .fragment-two-left .page-content {
     transform: translateY(4cm);
@@ -525,68 +217,31 @@ body {
     font-size: clamp(12px, 1.1vw, 16px);
 }
 
-
-/* =========================================================
+/* =========================
    FRAGMENT II IMAGE
-   ========================================================= */
+========================= */
 
 .fragment-two-image {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 9% 7%;
-
-    pointer-events: none;
-
+    padding: 8% 5%;
     transform: translateX(-70px);
 }
 
 .fragment-two-image img {
-    display: block;
-
     width: 100%;
     height: 100%;
-
     object-fit: contain;
-    object-position: center;
-
-    opacity: .94;
-
-    mix-blend-mode: multiply;
-
-    transform: rotate(-1deg);
-
-    filter:
-        contrast(1.08)
-        brightness(.86)
-        saturate(.78)
-        drop-shadow(0 4px 8px rgba(0,0,0,.35));
+    display: block;
 }
 
-
-/* =========================================================
+/* =========================
    PAGE NUMBERS
-   ========================================================= */
+========================= */
 
 .page-number {
     position: absolute;
-
     bottom: 6%;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: 9px;
-
-    letter-spacing: .15em;
-
-    color: #aaa99f;
-
-    opacity: .45;
+    font-size: 8px;
+    opacity: .55;
 }
 
 .page.left .page-number {
@@ -597,205 +252,49 @@ body {
     right: 10%;
 }
 
-
-/* =========================================================
-   SCRATCHES
-   ========================================================= */
-
-.scratch {
-    position: absolute;
-
-    width: 120px;
-    height: 1px;
-
-    background: rgba(210,205,190,.12);
-
-    transform: rotate(-7deg);
-
-    opacity: .7;
-
-    z-index: 4;
-}
-
-.scratch.one {
-    left: 15%;
-    top: 23%;
-}
-
-.scratch.two {
-    right: 13%;
-    top: 70%;
-
-    transform: rotate(4deg);
-}
-
-.scratch.three {
-    left: 35%;
-    bottom: 20%;
-
-    transform: rotate(-2deg);
-}
-
-
-/* =========================================================
-   PAGE TURN
-   ========================================================= */
-
-.page-turn {
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 50%;
-    height: 100%;
-
-    pointer-events: none;
-
-    transform-origin: left center;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(80,60,35,.25),
-            rgba(220,205,170,.08) 8%,
-            rgba(255,255,255,.04) 60%,
-            rgba(50,35,20,.18)
-        );
-
-    box-shadow:
-        -12px 0 25px rgba(0,0,0,.2);
-
-    opacity: 0;
-
-    z-index: 30;
-}
-
-.book.turning-forward .page-turn {
-    animation: pageTurnForward .95s ease-in-out;
-}
-
-@keyframes pageTurnForward {
-
-    0% {
-        opacity: 0;
-        transform: rotateY(0deg);
-    }
-
-    15% {
-        opacity: .8;
-    }
-
-    50% {
-        opacity: 1;
-        transform: rotateY(-88deg);
-    }
-
-    85% {
-        opacity: .8;
-    }
-
-    100% {
-        opacity: 0;
-        transform: rotateY(-180deg);
-    }
-}
-
-.book.turning-backward .page-turn {
-    animation: pageTurnBackward .95s ease-in-out;
-}
-
-@keyframes pageTurnBackward {
-
-    0% {
-        opacity: 0;
-        transform: rotateY(-180deg);
-    }
-
-    15% {
-        opacity: .8;
-    }
-
-    50% {
-        opacity: 1;
-        transform: rotateY(-88deg);
-    }
-
-    85% {
-        opacity: .8;
-    }
-
-    100% {
-        opacity: 0;
-        transform: rotateY(0deg);
-    }
-}
-
-
-/* =========================================================
+/* =========================
    CLOSE BUTTON
-   ========================================================= */
+========================= */
 
 .close-book {
     position: fixed;
+    top: 20px;
+    right: 20px;
 
-    top: 25px;
-    right: 30px;
+    width: 40px;
+    height: 40px;
 
-    z-index: 250;
+    border: 1px solid rgba(201,199,187,.25);
+    background: rgba(0,0,0,.4);
+    color: #c9c7bb;
 
-    width: 38px;
-    height: 38px;
-
-    border: 1px solid rgba(210,200,180,.25);
-
-    background: rgba(0,0,0,.25);
-
-    color: #d8d0c0;
-
-    font-size: 23px;
+    font-family: serif;
+    font-size: 24px;
 
     cursor: pointer;
-
-    opacity: .65;
-
-    transition:
-        opacity .3s ease,
-        background .3s ease;
+    z-index: 500;
 }
 
-.close-book:hover {
-    opacity: 1;
-    background: rgba(0,0,0,.5);
-}
-
-
-/* =========================================================
+/* =========================
    MODAL
-   ========================================================= */
+========================= */
 
 .modal {
     position: fixed;
     inset: 0;
-
-    z-index: 300;
+    background: rgba(0,0,0,.75);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    padding: 30px;
-
-    background: rgba(0,0,0,.78);
+    padding: 20px;
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 
-    transition:
-        opacity .5s ease,
-        visibility .5s ease;
+    z-index: 1000;
 }
 
 .modal.active {
@@ -805,165 +304,45 @@ body {
 }
 
 .modal-content {
-    position: relative;
+    width: min(600px, 90vw);
+    padding: 40px;
 
-    width: min(620px, 90vw);
+    background: #11100d;
+    border: 1px solid rgba(201,199,187,.2);
 
-    padding: 50px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #191713,
-            #0b0a08
-        );
-
-    border: 1px solid rgba(210,200,180,.15);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.85);
-}
-
-.close {
-    position: absolute;
-
-    top: 15px;
-    right: 18px;
-
-    border: none;
-    background: none;
-
-    color: #c9c1b0;
-
-    font-size: 26px;
-
-    cursor: pointer;
-
-    opacity: .65;
-}
-
-.modal-label {
-    font-family: "IM Fell English", serif;
-
-    font-size: 10px;
-
-    letter-spacing: .3em;
-
-    opacity: .5;
-
-    margin-bottom: 15px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.8);
 }
 
 .modal h2 {
-    font-family: "IM Fell English", serif;
-
-    font-size: 28px;
-
-    font-weight: 400;
-
-    margin-bottom: 20px;
+    margin-top: 0;
+    color: #c9c7bb;
 }
 
 .modal p {
-    font-size: 17px;
-
+    color: #aaa79b;
     line-height: 1.7;
-
-    opacity: .78;
 }
-
-.warning {
-    margin-top: 25px;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: 10px;
-
-    letter-spacing: .2em;
-
-    opacity: .4;
-}
-
 
 /* =========================================================
-   MOBILE PORTRAIT
-   ========================================================= */
+   PORTRAIT MOBILE
+   DO NOT CHANGE
+========================================================= */
 
 @media (max-width:700px) {
 
-    .title {
-        top: 24px;
-    }
-
-    .title h1 {
-        font-size: 22px;
-        letter-spacing: .15em;
-    }
-
-    .title p {
-        font-size: 10px;
-    }
-
-    .enter-hint {
-        bottom: 22px;
-        font-size: 10px;
-    }
-
-    .book-hotspot {
-        width: 75%;
-        height: 48%;
-        left: 12%;
-        top: 25%;
-    }
-
-    .document-left {
-        width: 25%;
-        height: 20%;
-        bottom: 8%;
-    }
-
-    .document-right {
-        width: 28%;
-        height: 18%;
-        top: 15%;
-    }
-
-    .document-bottom {
-        width: 30%;
-        height: 17%;
-    }
-
     .book-view {
         padding: 0;
-
         align-items: center;
         justify-content: center;
-
-        overflow: hidden;
-    }
-
-    .book-scroll {
-        width: 100%;
-        height: 100%;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
         overflow: hidden;
     }
 
     .book {
         width: 96vw;
         max-width: 96vw;
-
         height: auto;
-
         aspect-ratio: 3 / 2;
-
         max-height: none;
-
         flex-shrink: 0;
 
         transform:
@@ -1002,10 +381,8 @@ body {
     .manuscript {
         width: 78%;
         max-width: 78%;
-
         font-size: 7px;
         line-height: 1.45;
-
         overflow-wrap: break-word;
         word-break: normal;
     }
@@ -1018,10 +395,8 @@ body {
     .right-text p {
         width: 78%;
         max-width: 78%;
-
         font-size: 7px;
         line-height: 1.5;
-
         overflow-wrap: break-word;
         word-break: normal;
     }
@@ -1032,7 +407,10 @@ body {
         letter-spacing: .25em;
     }
 
-    .fragment-one-left .page-content,
+    .fragment-one-left .page-content {
+        transform: translateY(1.1cm);
+    }
+
     .fragment-two-left .page-content {
         transform: translateY(1.1cm);
     }
@@ -1049,14 +427,12 @@ body {
     .fragment-two-left .manuscript {
         width: 78%;
         max-width: 78%;
-
         font-size: 7px;
         line-height: 1.4;
     }
 
     .fragment-two-image {
         padding: 8% 5%;
-
         transform: translateX(-42px);
     }
 
@@ -1081,10 +457,8 @@ body {
     .close-book {
         top: 10px;
         right: 10px;
-
         width: 32px;
         height: 32px;
-
         font-size: 20px;
     }
 
@@ -1107,10 +481,10 @@ body {
     }
 }
 
-
 /* =========================================================
-   EXTRA SMALL PHONES
-   ========================================================= */
+   EXTRA SMALL MOBILE
+   DO NOT CHANGE
+========================================================= */
 
 @media (max-width:380px) {
 
@@ -1148,7 +522,6 @@ body {
     .right-text p {
         width: 76%;
         max-width: 76%;
-
         font-size: 6px;
         line-height: 1.35;
     }
@@ -1163,484 +536,161 @@ body {
     }
 }
 
-
 /* =========================================================
-   LANDSCAPE
-   WHOLE BOOK FITS ON SCREEN
-   ========================================================= */
+   LANDSCAPE MOBILE
+   ONLY THIS SECTION WAS CHANGED
+========================================================= */
 
 @media (max-width:700px) and (orientation:landscape) {
 
     .book-view {
         display: flex;
-
         width: 100%;
         height: 100dvh;
 
         padding: 0;
-
-        overflow: hidden;
+        margin: 0;
 
         align-items: center;
         justify-content: center;
 
-        touch-action: auto;
+        overflow: hidden;
+
+        touch-action: pinch-zoom;
     }
 
     .book-scroll {
-
         width: 100%;
         height: 100%;
 
         display: flex;
-
         align-items: center;
         justify-content: center;
 
-        overflow: hidden;
+        overflow: visible;
 
         padding: 0;
+        margin: 0;
 
-        touch-action: auto;
-
-        -webkit-overflow-scrolling: auto;
+        touch-action: pinch-zoom;
     }
 
-
     /*
-       LANDSCAPE:
-       Fit the entire open book inside the
-       available screen height.
+       IMPORTANT:
+       The book is sized from BOTH screen width and height.
+
+       This guarantees the complete 3:2 spread
+       fits inside the landscape screen.
     */
 
     .book {
+        width: min(
+            92vw,
+            calc((100dvh - 24px) * 1.5)
+        );
 
-        height: 78dvh;
-        width: auto;
+        height: auto;
 
         aspect-ratio: 3 / 2;
 
-        max-width: 90vw;
-        max-height: 78dvh;
+        max-width: 92vw;
+        max-height: calc(100dvh - 24px);
 
         margin: 0;
 
         flex-shrink: 0;
 
-        transform:
-            perspective(1200px)
-            rotateX(1deg)
-            scale(.98);
+        /*
+           No perspective / rotation here.
+           This prevents the top and bottom edges
+           from being pushed outside the viewport.
+        */
+
+        transform: none !important;
     }
 
     .book-view.active .book {
-
-        transform:
-            perspective(1200px)
-            rotateX(1deg)
-            scale(1);
+        transform: none !important;
     }
-
-
-    /* SMALL LANDSCAPE TYPOGRAPHY */
-
-    .page {
-        padding: 5% 6%;
-    }
-
-    .page.left {
-        padding-left: 11%;
-    }
-
-    .book-header {
-        font-size: 9px;
-        letter-spacing: .08em;
-        margin-bottom: 4px;
-    }
-
-    .fragment {
-        font-size: 4px;
-        letter-spacing: .12em;
-        margin-bottom: 9px;
-    }
-
-    .manuscript {
-        width: 78%;
-        max-width: 78%;
-
-        font-size: 6px;
-        line-height: 1.35;
-
-        overflow-wrap: break-word;
-        word-break: normal;
-    }
-
-    .right-text {
-        padding-bottom: 0;
-        justify-content: center;
-    }
-
-    .right-text p {
-
-        width: 78%;
-        max-width: 78%;
-
-        font-size: 6px;
-        line-height: 1.4;
-
-        overflow-wrap: break-word;
-        word-break: normal;
-    }
-
-    .time-clue {
-        margin-top: 12px;
-
-        font-size: 4px;
-
-        letter-spacing: .22em;
-    }
-
-
-    .fragment-one-left .page-content,
-    .fragment-two-left .page-content {
-        transform: translateY(.35cm);
-    }
-
-    .fragment-two-left .book-header {
-        font-size: 9px;
-    }
-
-    .fragment-two-left .fragment {
-        font-size: 4px;
-        margin-bottom: 9px;
-    }
-
-    .fragment-two-left .manuscript {
-
-        width: 78%;
-        max-width: 78%;
-
-        font-size: 6px;
-        line-height: 1.35;
-    }
-
-
-    .fragment-two-image {
-
-        padding: 6% 5%;
-
-        transform: translateX(-32px);
-    }
-
-    .fragment-two-image img {
-
-        width: 100%;
-        height: 100%;
-    }
-
-
-    .page-number {
-
-        bottom: 4%;
-
-        font-size: 5px;
-    }
-
-    .page.left .page-number {
-        left: 7%;
-    }
-
-    .page.right .page-number {
-        right: 7%;
-    }
-
-
-    .close-book {
-
-        top: 8px;
-        right: 8px;
-
-        width: 30px;
-        height: 30px;
-
-        font-size: 19px;
-    }
-
-}
-
-
-/* =========================================================
-   TOUCH ZOOM SUPPORT
-   ========================================================= */
-
-@media (max-width:700px) {
-
-    .book-view,
-    .book-scroll,
-    .book {
-        touch-action: pinch-zoom;
-    }
-
 }
 </style>
 </head>
 
 <body>
 
-<div class="scene">
-
-    <div class="book-scene"></div>
-
-    <div class="title">
-        <h1>Book of Chalk</h1>
-        <p>an unfinished record</p>
-    </div>
-
-    <div
-        class="hotspot book-hotspot"
-        onclick="openBook()"
-        aria-label="Open the Book of Chalk">
-    </div>
-
-    <div
-        class="hotspot document-left"
-        onclick="openModal('warning')"
-        aria-label="Read document">
-    </div>
-
-    <div
-        class="hotspot document-right"
-        onclick="openModal('photograph')"
-        aria-label="Examine photograph">
-    </div>
-
-    <div
-        class="hotspot document-bottom"
-        onclick="openModal('record')"
-        aria-label="Read record">
-    </div>
-
-    <div class="enter-hint">
-        click the book
-    </div>
-
-</div>
-
+<!-- =========================
+     BOOK
+========================= -->
 
 <div class="book-view" id="bookView">
 
-    <button
-        class="close-book"
-        onclick="closeBook()"
-        aria-label="Close book">
-        ×
-    </button>
-
+    <button class="close-book" id="closeBook">×</button>
 
     <div class="book-scroll" id="bookScroll">
 
         <div class="book" id="book">
 
+            <!-- LEFT PAGE -->
 
-            <!-- =================================================
-                 FRAGMENT I
-                 ================================================= -->
+            <section class="page left fragment-one-left" id="leftPage">
 
-            <div class="spread active" id="fragmentOne">
+                <div class="page-content">
 
-                <section class="page left fragment-one-left">
+                    <div class="book-header">
+                        THE BOOK OF CHALK
+                    </div>
 
-                    <div class="page-content">
+                    <div class="fragment">
+                        FRAGMENT I
+                    </div>
 
-                        <div class="book-header">
-                            BOOK OF CHALK
-                        </div>
+                    <div class="manuscript">
+                        <p>
+                            This record was never meant to be found.
+                        </p>
 
-                        <div class="fragment">
-                            Fragment I
-                        </div>
-
-                        <div class="manuscript">
-
-                            <em>
-                                This record was never meant to be found.
-                            </em>
-
-                            <br><br>
-
+                        <p>
                             If you have found this book,
                             do not assume you were meant to.
+                        </p>
 
-                            <br><br>
-
+                        <p>
                             The pages do not reveal what happened.
+                        </p>
 
-                            <br>
-
+                        <p>
                             They reveal what remembers you.
-
-                        </div>
-
+                        </p>
                     </div>
 
-                    <div class="scratch one"></div>
-                    <div class="scratch two"></div>
+                </div>
 
-                    <div class="page-number">
-                        I
+                <div class="page-number">I</div>
+
+            </section>
+
+
+            <!-- RIGHT PAGE -->
+
+            <section class="page right" id="rightPage">
+
+                <div class="page-content right-text">
+
+                    <p>
+                        Some pages were written
+                        before they happened.
+                    </p>
+
+                    <div class="time-clue">
+                        13:13
                     </div>
 
-                </section>
+                </div>
 
+                <div class="page-number">II</div>
 
-                <section
-                    class="page right"
-                    onclick="turnForward()">
+            </section>
 
-                    <div class="page-content">
-
-                        <div class="right-text">
-
-                            <p>
-                                Some pages were written
-                                before they happened.
-                            </p>
-
-                            <div class="time-clue">
-                                13:13
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="scratch three"></div>
-
-                    <div class="page-number">
-                        II
-                    </div>
-
-                </section>
-
-            </div>
-
-
-            <!-- =================================================
-                 FRAGMENT II
-                 ================================================= -->
-
-            <div class="spread" id="fragmentTwo">
-
-                <section
-                    class="page left fragment-two-left"
-                    onclick="turnBackward()">
-
-                    <div class="page-content">
-
-                        <div class="book-header">
-                            BOOK OF CHALK
-                        </div>
-
-                        <div class="fragment">
-                            Fragment II
-                        </div>
-
-                        <div class="manuscript">
-
-                            <em>
-                                Crush, break…
-                                your pulse now bends to me.
-                            </em>
-
-                            <br><br>
-
-                            Screams swallowed…
-                            shadows set you free.
-
-                            <br><br>
-
-                            Tick… tock…
-                            chaos reigns, time entwines.
-
-                            <br><br>
-
-                            Your heart is mine…
-                            lost within the lines.
-
-                        </div>
-
-                    </div>
-
-                    <div class="scratch one"></div>
-                    <div class="scratch two"></div>
-
-                    <div class="page-number">
-                        III
-                    </div>
-
-                </section>
-
-
-                <section class="page right">
-
-                    <div class="page-content">
-
-                        <div class="fragment-two-image">
-
-                            <img
-                                src="fragment-2.jpg"
-                                alt="Fragment II illustration">
-
-                        </div>
-
-                    </div>
-
-                    <div class="scratch three"></div>
-
-                    <div class="page-number">
-                        IV
-                    </div>
-
-                </section>
-
-            </div>
-
-
-            <div class="page-turn"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================================================
-     MODAL
-     ========================================================= -->
-
-<div class="modal" id="modal">
-
-    <div class="modal-content">
-
-        <button
-            class="close"
-            onclick="closeModal()">
-            ×
-        </button>
-
-        <div
-            class="modal-label"
-            id="modal-label">
-        </div>
-
-        <h2 id="modal-title"></h2>
-
-        <p id="modal-text"></p>
-
-        <div
-            class="warning"
-            id="modal-warning">
         </div>
 
     </div>
@@ -1650,210 +700,72 @@ body {
 
 <script>
 
-const bookView =
-    document.getElementById("bookView");
+/* =========================
+   ELEMENTS
+========================= */
 
-const bookScroll =
-    document.getElementById("bookScroll");
+const bookView = document.getElementById("bookView");
+const bookScroll = document.getElementById("bookScroll");
+const closeBookButton = document.getElementById("closeBook");
 
-const book =
-    document.getElementById("book");
 
-const fragmentOne =
-    document.getElementById("fragmentOne");
-
-const fragmentTwo =
-    document.getElementById("fragmentTwo");
-
+/* =========================
+   OPEN BOOK
+========================= */
 
 function openBook() {
-
     bookView.classList.add("active");
 
-    fragmentOne.classList.add("active");
-    fragmentTwo.classList.remove("active");
-
-    bookScroll.scrollTop = 0;
-
-    document.querySelector(".title").style.opacity = "0";
-
-    document.querySelector(".enter-hint").style.opacity = "0";
+    if (bookScroll) {
+        bookScroll.scrollTop = 0;
+        bookScroll.scrollLeft = 0;
+    }
 }
 
+
+/* =========================
+   CLOSE BOOK
+========================= */
 
 function closeBook() {
-
     bookView.classList.remove("active");
 
-    fragmentOne.classList.add("active");
-    fragmentTwo.classList.remove("active");
-
-    book.classList.remove("turning-forward");
-    book.classList.remove("turning-backward");
-
-    bookScroll.scrollTop = 0;
-
-    document.querySelector(".title").style.opacity = ".82";
-
-    document.querySelector(".enter-hint").style.opacity = ".55";
-}
-
-
-function turnForward() {
-
-    if (
-        book.classList.contains("turning-forward") ||
-        book.classList.contains("turning-backward")
-    ) return;
-
-    book.classList.add("turning-forward");
-
-    setTimeout(function() {
-
-        fragmentOne.classList.remove("active");
-        fragmentTwo.classList.add("active");
-
-    }, 470);
-
-    setTimeout(function() {
-
-        book.classList.remove("turning-forward");
-
-    }, 1000);
-}
-
-
-function turnBackward() {
-
-    if (
-        book.classList.contains("turning-forward") ||
-        book.classList.contains("turning-backward")
-    ) return;
-
-    book.classList.add("turning-backward");
-
-    setTimeout(function() {
-
-        fragmentTwo.classList.remove("active");
-        fragmentOne.classList.add("active");
-
-    }, 470);
-
-    setTimeout(function() {
-
-        book.classList.remove("turning-backward");
-
-    }, 1000);
-}
-
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-const modal =
-    document.getElementById("modal");
-
-const label =
-    document.getElementById("modal-label");
-
-const title =
-    document.getElementById("modal-title");
-
-const text =
-    document.getElementById("modal-text");
-
-const warning =
-    document.getElementById("modal-warning");
-
-
-const entries = {
-
-    warning: {
-
-        label: "DOCUMENT 01",
-
-        title: "DO NOT READ THIS.",
-
-        text:
-        "The note appears to have been written in a hurry. Several lines have been crossed out. The final sentence is impossible to decipher.",
-
-        warning:
-        "FOUND BESIDE THE BOOK"
-    },
-
-    photograph: {
-
-        label: "ARTIFACT",
-
-        title: "It was not here yesterday.",
-
-        text:
-        "An old photograph. No date. No names. The people in the photograph are impossible to identify.",
-
-        warning:
-        "IMAGE RECORD: UNKNOWN"
-    },
-
-    record: {
-
-        label: "RECORD — 13:13",
-
-        title: "Something changed.",
-
-        text:
-        "The page contains several dates, numbers and fragments of handwriting. One of the dates appears to be from a year that has not happened yet.",
-
-        warning:
-        "ARCHIVE ERROR"
+    if (bookScroll) {
+        bookScroll.scrollTop = 0;
+        bookScroll.scrollLeft = 0;
     }
-
-};
-
-
-function openModal(type) {
-
-    const entry = entries[type];
-
-    label.textContent = entry.label;
-    title.textContent = entry.title;
-    text.textContent = entry.text;
-    warning.textContent = entry.warning;
-
-    modal.classList.add("active");
 }
 
 
-function closeModal() {
-
-    modal.classList.remove("active");
-}
+closeBookButton.addEventListener("click", closeBook);
 
 
-modal.addEventListener("click", function(e) {
-
-    if (e.target === modal) {
-        closeModal();
-    }
-
-});
-
+/* =========================
+   ESC KEY
+========================= */
 
 document.addEventListener("keydown", function(e) {
 
     if (e.key === "Escape") {
-
-        if (bookView.classList.contains("active")) {
-            closeBook();
-        }
-
-        if (modal.classList.contains("active")) {
-            closeModal();
-        }
-
+        closeBook();
     }
 
 });
+
+
+/* =========================
+   TEMPORARY DEMO OPEN
+   REMOVE ONLY IF YOU ALREADY
+   HAVE YOUR OWN OPEN FUNCTION
+========================= */
+
+/*
+   The actual site can call:
+
+       openBook();
+
+   whenever the Book of Chalk should open.
+*/
 
 </script>
 
