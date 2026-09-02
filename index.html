@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +27,6 @@ body {
     font-family: "Cormorant Garamond", serif;
     color: #d8d0c0;
 }
-
-/* =========================================================
-   MAIN SCENE
-   ========================================================= */
 
 .scene {
     position: relative;
@@ -62,10 +59,6 @@ body {
 
     z-index: 10;
 }
-
-/* =========================================================
-   HERO IMAGE
-   ========================================================= */
 
 .book-scene {
     position: absolute;
@@ -112,10 +105,6 @@ body {
     }
 }
 
-/* =========================================================
-   TITLE
-   ========================================================= */
-
 .title {
     position: absolute;
     top: 38px;
@@ -153,10 +142,6 @@ body {
     opacity: .65;
 }
 
-/* =========================================================
-   HINT
-   ========================================================= */
-
 .enter-hint {
     position: absolute;
     bottom: 35px;
@@ -186,10 +171,6 @@ body {
     }
 }
 
-/* =========================================================
-   INVISIBLE CLICKABLE AREAS
-   ========================================================= */
-
 .hotspot {
     position: absolute;
     z-index: 15;
@@ -200,8 +181,6 @@ body {
     background: transparent;
 }
 
-/* BOOK */
-
 .book-hotspot {
     width: 57%;
     height: 63%;
@@ -211,8 +190,6 @@ body {
 
     transform: rotate(-1deg);
 }
-
-/* DOCUMENTS — RESERVED FOR LATER */
 
 .document-left {
     left: 0;
@@ -234,10 +211,6 @@ body {
     width: 28%;
     height: 25%;
 }
-
-/* =========================================================
-   BOOK EXPERIENCE
-   ========================================================= */
 
 .book-view {
     position: fixed;
@@ -274,10 +247,6 @@ body {
     pointer-events: auto;
 }
 
-/* =========================================================
-   MASTER BOOK LAYOUT
-   ========================================================= */
-
 .book {
     position: relative;
 
@@ -313,35 +282,21 @@ body {
         scale(1);
 }
 
-/* =========================================================
-   CONTENT PAGES
-   ========================================================= */
-
 .page {
     position: relative;
 
     width: 50%;
     height: 100%;
 
-    padding: clamp(45px, 5vw, 80px);
+    /* SAFE AREA — keeps everything well inside the manuscript border */
+    padding: 7% 10%;
 
     overflow: hidden;
 
-    color: #332b20;
-
-    /*
-       IMPORTANT:
-       The parchment, border and center gutter
-       come from book-page.jpg.
-       These pages are transparent content layers.
-    */
+    color: #c9c7bb;
 
     background: transparent;
 }
-
-/* =========================================================
-   CONTENT SAFE AREA
-   ========================================================= */
 
 .page-content {
     position: relative;
@@ -352,27 +307,17 @@ body {
 
     display: flex;
     flex-direction: column;
-}
 
-/* =========================================================
-   LEFT PAGE
-   ========================================================= */
+    overflow: hidden;
+}
 
 .page.left {
     cursor: default;
 }
 
-/* =========================================================
-   RIGHT PAGE
-   ========================================================= */
-
 .page.right {
     cursor: pointer;
 }
-
-/* =========================================================
-   BOOK HEADER
-   ========================================================= */
 
 .book-header {
     position: relative;
@@ -380,54 +325,64 @@ body {
 
     font-family: "IM Fell English", serif;
 
-    font-size: clamp(22px, 2.5vw, 34px);
+    font-size: clamp(17px, 1.65vw, 24px);
 
-    letter-spacing: .14em;
+    font-weight: 400;
 
-    margin-bottom: 12px;
+    letter-spacing: .12em;
+
+    color: #c7c5b9;
+
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 1px 4px rgba(0,0,0,.75);
 }
 
 .fragment {
     position: relative;
     z-index: 5;
 
-    font-size: 12px;
+    font-family: "IM Fell English", serif;
 
-    letter-spacing: .28em;
+    font-size: 9px;
+
+    letter-spacing: .22em;
 
     text-transform: uppercase;
 
-    opacity: .55;
+    color: #aaa99f;
 
-    margin-bottom: 55px;
+    opacity: .72;
+
+    margin-bottom: 32px;
 }
-
-/* =========================================================
-   MANUSCRIPT
-   ========================================================= */
 
 .manuscript {
     position: relative;
     z-index: 5;
 
-    max-width: 470px;
+    width: 100%;
+    max-width: 330px;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family: "IM Fell English", serif;
 
-    font-size: clamp(19px, 2vw, 26px);
+    font-size: clamp(14px, 1.25vw, 18px);
 
-    line-height: 1.8;
+    line-height: 1.75;
 
-    font-weight: 500;
+    font-weight: 400;
+
+    color: #c9c7bb;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.85);
 }
 
 .manuscript em {
     font-style: italic;
+    color: #d0cec2;
 }
-
-/* =========================================================
-   RIGHT PAGE TEXT
-   ========================================================= */
 
 .right-text {
     position: relative;
@@ -437,63 +392,71 @@ body {
     flex-direction: column;
 
     justify-content: center;
+    align-items: flex-start;
 
     height: 100%;
 
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 .right-text p {
-    font-family: "Cormorant Garamond", serif;
+    width: 100%;
+    max-width: 310px;
 
-    font-size: clamp(20px, 2.1vw, 28px);
+    font-family: "IM Fell English", serif;
+
+    font-size: clamp(14px, 1.3vw, 19px);
 
     line-height: 1.8;
 
     font-style: italic;
 
-    max-width: 440px;
+    color: #c5c3b7;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.85);
 }
 
 .time-clue {
-    margin-top: 65px;
+    margin-top: 45px;
 
-    font-family: monospace;
+    font-family: "IM Fell English", serif;
 
-    font-size: 12px;
+    font-size: 10px;
 
-    letter-spacing: .4em;
+    letter-spacing: .38em;
 
-    opacity: .5;
+    color: #aaa99f;
+
+    opacity: .65;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.8);
 }
-
-/* =========================================================
-   PAGE NUMBER
-   ========================================================= */
 
 .page-number {
     position: absolute;
 
-    bottom: 25px;
+    bottom: 6%;
 
-    font-size: 12px;
+    font-family: "IM Fell English", serif;
+
+    font-size: 9px;
 
     letter-spacing: .15em;
+
+    color: #aaa99f;
 
     opacity: .45;
 }
 
 .page.left .page-number {
-    left: 45px;
+    left: 10%;
 }
 
 .page.right .page-number {
-    right: 45px;
+    right: 10%;
 }
-
-/* =========================================================
-   FUTURE FRAGMENT II
-   ========================================================= */
 
 .future-page {
     display: none;
@@ -514,17 +477,13 @@ body {
     opacity: .15;
 }
 
-/* =========================================================
-   SCRATCHES
-   ========================================================= */
-
 .scratch {
     position: absolute;
 
     width: 120px;
     height: 1px;
 
-    background: rgba(60,45,25,.22);
+    background: rgba(210,205,190,.12);
 
     transform: rotate(-7deg);
 
@@ -551,10 +510,6 @@ body {
 
     transform: rotate(-2deg);
 }
-
-/* =========================================================
-   PAGE TURN OVERLAY
-   ========================================================= */
 
 .page-turn {
     position: absolute;
@@ -616,10 +571,6 @@ body {
     }
 }
 
-/* =========================================================
-   CLOSE BOOK
-   ========================================================= */
-
 .close-book {
     position: fixed;
 
@@ -652,10 +603,6 @@ body {
     opacity: 1;
     background: rgba(0,0,0,.5);
 }
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
 
 @media (max-width: 700px) {
 
@@ -712,40 +659,40 @@ body {
     }
 
     .page {
-        padding: 25px 18px;
+        padding: 8% 8%;
     }
 
     .book-header {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .fragment {
-        font-size: 8px;
-        margin-bottom: 25px;
+        font-size: 7px;
+        margin-bottom: 20px;
     }
 
     .manuscript,
     .right-text p {
-        font-size: 15px;
-        line-height: 1.55;
+        font-size: 12px;
+        line-height: 1.6;
     }
 
     .time-clue {
-        margin-top: 30px;
-        font-size: 8px;
+        margin-top: 25px;
+        font-size: 7px;
     }
 
     .page-number {
-        bottom: 12px;
-        font-size: 9px;
+        bottom: 5%;
+        font-size: 7px;
     }
 
     .page.left .page-number {
-        left: 20px;
+        left: 8%;
     }
 
     .page.right .page-number {
-        right: 20px;
+        right: 8%;
     }
 
     .close-book {
@@ -757,10 +704,6 @@ body {
 </head>
 
 <body>
-
-<!-- =======================================================
-     MAIN SCENE
-     ======================================================= -->
 
 <div class="scene">
 
@@ -776,8 +719,6 @@ body {
         onclick="openBook()"
         aria-label="Open the Book of Chalk">
     </div>
-
-    <!-- DOCUMENTS — RESERVED FOR LATER -->
 
     <div
         class="hotspot document-left"
@@ -803,11 +744,6 @@ body {
 
 </div>
 
-
-<!-- =======================================================
-     BOOK
-     ======================================================= -->
-
 <div class="book-view" id="bookView">
 
     <button
@@ -818,8 +754,6 @@ body {
     </button>
 
     <div class="book" id="book">
-
-        <!-- MASTER LAYOUT -->
 
         <section class="page left">
 
@@ -865,9 +799,6 @@ body {
 
         </section>
 
-
-        <!-- RIGHT PAGE -->
-
         <section
             class="page right"
             onclick="turnPage()">
@@ -897,19 +828,11 @@ body {
 
         </section>
 
-
-        <!-- PAGE TURN EFFECT -->
-
         <div class="page-turn"></div>
 
     </div>
 
 </div>
-
-
-<!-- =======================================================
-     OLD DOCUMENT MODAL
-     ======================================================= -->
 
 <div class="modal" id="modal">
 
@@ -929,12 +852,7 @@ body {
 
 </div>
 
-
 <script>
-
-/* =========================================================
-   BOOK
-   ========================================================= */
 
 const bookView = document.getElementById("bookView");
 const book = document.getElementById("book");
@@ -955,11 +873,6 @@ function closeBook() {
     document.querySelector(".enter-hint").style.opacity = ".55";
 }
 
-
-/* =========================================================
-   PAGE TURN
-   ========================================================= */
-
 function turnPage() {
 
     if (book.classList.contains("turning")) {
@@ -974,11 +887,6 @@ function turnPage() {
 
     }, 1000);
 }
-
-
-/* =========================================================
-   DOCUMENT MODALS
-   ========================================================= */
 
 const modal = document.getElementById("modal");
 const label = document.getElementById("modal-label");
@@ -1034,9 +942,6 @@ function closeModal() {
     modal.classList.remove("active");
 }
 
-
-/* CLOSE MODAL OUTSIDE */
-
 modal.addEventListener("click", function(e) {
 
     if (e.target === modal) {
@@ -1044,9 +949,6 @@ modal.addEventListener("click", function(e) {
     }
 
 });
-
-
-/* ESCAPE */
 
 document.addEventListener("keydown", function(e) {
 
@@ -1068,3 +970,4 @@ document.addEventListener("keydown", function(e) {
 
 </body>
 </html>
+```
