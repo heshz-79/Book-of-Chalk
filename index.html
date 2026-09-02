@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -282,13 +281,37 @@ body {
         scale(1);
 }
 
+/* =========================
+   BOOK SPREADS
+   ========================= */
+
+.spread {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity .15s ease;
+}
+
+.spread.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   PAGES
+   ========================= */
+
 .page {
     position: relative;
 
     width: 50%;
     height: 100%;
 
-    /* SAFE AREA — keeps everything well inside the manuscript border */
     padding: 7% 10%;
 
     overflow: hidden;
@@ -313,7 +336,7 @@ body {
 
 .page.left {
     cursor: default;
-       padding-left: 15%;
+    padding-left: 15%;
 }
 
 .page.right {
@@ -435,6 +458,55 @@ body {
         0 1px 3px rgba(0,0,0,.8);
 }
 
+/* =========================
+   FRAGMENT II IMAGE
+   ========================= */
+
+.fragment-two-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 9% 7%;
+
+    pointer-events: none;
+}
+
+.fragment-two-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    filter:
+        contrast(1.08)
+        brightness(.82)
+        saturate(.78);
+
+    opacity: .94;
+
+    mix-blend-mode: multiply;
+
+    transform: rotate(-1deg);
+
+    filter:
+        contrast(1.08)
+        brightness(.86)
+        saturate(.78)
+        drop-shadow(0 4px 8px rgba(0,0,0,.35));
+}
+
+/* =========================
+   PAGE NUMBERS
+   ========================= */
+
 .page-number {
     position: absolute;
 
@@ -459,24 +531,9 @@ body {
     right: 10%;
 }
 
-.future-page {
-    display: none;
-}
-
-.future-page .future-label {
-    margin-top: auto;
-    margin-bottom: auto;
-
-    text-align: center;
-
-    font-family: "IM Fell English", serif;
-
-    font-size: 18px;
-
-    letter-spacing: .18em;
-
-    opacity: .15;
-}
+/* =========================
+   SCRATCHES
+   ========================= */
 
 .scratch {
     position: absolute;
@@ -511,6 +568,10 @@ body {
 
     transform: rotate(-2deg);
 }
+
+/* =========================
+   PAGE TURN
+   ========================= */
 
 .page-turn {
     position: absolute;
@@ -572,6 +633,10 @@ body {
     }
 }
 
+/* =========================
+   CLOSE BUTTON
+   ========================= */
+
 .close-book {
     position: fixed;
 
@@ -604,6 +669,10 @@ body {
     opacity: 1;
     background: rgba(0,0,0,.5);
 }
+
+/* =========================
+   MOBILE
+   ========================= */
 
 @media (max-width: 700px) {
 
@@ -663,6 +732,10 @@ body {
         padding: 8% 8%;
     }
 
+    .page.left {
+        padding-left: 15%;
+    }
+
     .book-header {
         font-size: 15px;
     }
@@ -681,6 +754,10 @@ body {
     .time-clue {
         margin-top: 25px;
         font-size: 7px;
+    }
+
+    .fragment-two-image {
+        padding: 10% 5%;
     }
 
     .page-number {
@@ -756,78 +833,168 @@ body {
 
     <div class="book" id="book">
 
-        <section class="page left">
+        <!-- =========================
+             FRAGMENT I
+             ========================= -->
 
-            <div class="page-content">
+        <div class="spread active" id="fragmentOne">
 
-                <div class="book-header">
-                    BOOK OF CHALK
-                </div>
+            <section class="page left">
 
-                <div class="fragment">
-                    Fragment I
-                </div>
+                <div class="page-content">
 
-                <div class="manuscript">
+                    <div class="book-header">
+                        BOOK OF CHALK
+                    </div>
 
-                    <em>
-                        This record was never meant to be found.
-                    </em>
+                    <div class="fragment">
+                        Fragment I
+                    </div>
 
-                    <br><br>
+                    <div class="manuscript">
 
-                    If you have found this book,
-                    do not assume you were meant to.
+                        <em>
+                            This record was never meant to be found.
+                        </em>
 
-                    <br><br>
+                        <br><br>
 
-                    The pages do not reveal what happened.
+                        If you have found this book,
+                        do not assume you were meant to.
 
-                    <br>
+                        <br><br>
 
-                    They reveal what remembers you.
+                        The pages do not reveal what happened.
 
-                </div>
+                        <br>
 
-            </div>
+                        They reveal what remembers you.
 
-            <div class="scratch one"></div>
-            <div class="scratch two"></div>
-
-            <div class="page-number">
-                I
-            </div>
-
-        </section>
-
-        <section
-            class="page right"
-            onclick="turnPage()">
-
-            <div class="page-content">
-
-                <div class="right-text">
-
-                    <p>
-                        Some pages were written
-                        before they happened.
-                    </p>
-
-                    <div class="time-clue">
-                        13:13
                     </div>
 
                 </div>
 
-            </div>
+                <div class="scratch one"></div>
+                <div class="scratch two"></div>
 
-            <div class="scratch three"></div>
+                <div class="page-number">
+                    I
+                </div>
 
-            <div class="page-number">
-                II
-            </div>
+            </section>
 
-        </section>
+            <section
+                class="page right"
+                onclick="turnToFragmentTwo()">
+
+                <div class="page-content">
+
+                    <div class="right-text">
+
+                        <p>
+                            Some pages were written
+                            before they happened.
+                        </p>
+
+                        <div class="time-clue">
+                            13:13
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="scratch three"></div>
+
+                <div class="page-number">
+                    II
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =========================
+             FRAGMENT II
+             ========================= -->
+
+        <div class="spread" id="fragmentTwo">
+
+            <section class="page left">
+
+                <div class="page-content">
+
+                    <div class="book-header">
+                        BOOK OF CHALK
+                    </div>
+
+                    <div class="fragment">
+                        Fragment II
+                    </div>
+
+                    <div class="manuscript">
+
+                        <em>
+                            Crush, break…
+                            your pulse now bends to me.
+                        </em>
+
+                        <br><br>
+
+                        Screams swallowed…
+                        shadows set you free.
+
+                        <br><br>
+
+                        Tick… tock…
+                        chaos reigns, time entwines.
+
+                        <br><br>
+
+                        Your heart is mine…
+                        lost within the lines.
+
+                    </div>
+
+                </div>
+
+                <div class="scratch one"></div>
+                <div class="scratch two"></div>
+
+                <div class="page-number">
+                    III
+                </div>
+
+            </section>
+
+
+            <section
+                class="page right"
+                onclick="turnBackToFragmentOne()">
+
+                <div class="page-content">
+
+                    <div class="fragment-two-image">
+
+                        <img
+                            src="fragment-2.jpg"
+                            alt="">
+                            
+                    </div>
+
+                </div>
+
+                <div class="scratch three"></div>
+
+                <div class="page-number">
+                    IV
+                </div>
+
+            </section>
+
+        </div>
+
 
         <div class="page-turn"></div>
 
@@ -858,9 +1025,15 @@ body {
 const bookView = document.getElementById("bookView");
 const book = document.getElementById("book");
 
+const fragmentOne = document.getElementById("fragmentOne");
+const fragmentTwo = document.getElementById("fragmentTwo");
+
 function openBook() {
 
     bookView.classList.add("active");
+
+    fragmentOne.classList.add("active");
+    fragmentTwo.classList.remove("active");
 
     document.querySelector(".title").style.opacity = "0";
     document.querySelector(".enter-hint").style.opacity = "0";
@@ -870,11 +1043,14 @@ function closeBook() {
 
     bookView.classList.remove("active");
 
+    fragmentOne.classList.add("active");
+    fragmentTwo.classList.remove("active");
+
     document.querySelector(".title").style.opacity = ".82";
     document.querySelector(".enter-hint").style.opacity = ".55";
 }
 
-function turnPage() {
+function turnToFragmentTwo() {
 
     if (book.classList.contains("turning")) {
         return;
@@ -884,10 +1060,44 @@ function turnPage() {
 
     setTimeout(function() {
 
+        fragmentOne.classList.remove("active");
+        fragmentTwo.classList.add("active");
+
+    }, 470);
+
+    setTimeout(function() {
+
         book.classList.remove("turning");
 
     }, 1000);
 }
+
+function turnBackToFragmentOne() {
+
+    if (book.classList.contains("turning")) {
+        return;
+    }
+
+    book.classList.add("turning");
+
+    setTimeout(function() {
+
+        fragmentTwo.classList.remove("active");
+        fragmentOne.classList.add("active");
+
+    }, 470);
+
+    setTimeout(function() {
+
+        book.classList.remove("turning");
+
+    }, 1000);
+}
+
+
+/* =========================
+   MODALS
+   ========================= */
 
 const modal = document.getElementById("modal");
 const label = document.getElementById("modal-label");
@@ -971,4 +1181,3 @@ document.addEventListener("keydown", function(e) {
 
 </body>
 </html>
-```
