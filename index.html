@@ -254,7 +254,7 @@ body {
 
 
 /* =========================================================
-   INTERNAL SCROLL CONTAINER
+   INTERNAL SCROLL
    ========================================================= */
 
 .book-scroll {
@@ -272,8 +272,6 @@ body {
 
 .book-scroll::-webkit-scrollbar {
     display: none;
-    width: 0;
-    height: 0;
 }
 
 
@@ -440,14 +438,14 @@ body {
 }
 
 
-/* FRAGMENT I LEFT */
+/* FRAGMENT I */
 
 .fragment-one-left .page-content {
     transform: translateY(4cm);
 }
 
 
-/* FRAGMENT II LEFT */
+/* FRAGMENT II */
 
 .fragment-two-left .page-content {
     transform: translateY(4cm);
@@ -489,6 +487,7 @@ body {
     opacity: .94;
     mix-blend-mode: multiply;
     transform: rotate(-1deg);
+
     filter:
         contrast(1.08)
         brightness(.86)
@@ -502,9 +501,11 @@ body {
 .page-number {
     position: absolute;
     bottom: 6%;
+
     font-family: "IM Fell English", serif;
     font-size: 9px;
     letter-spacing: .15em;
+
     color: #aaa99f;
     opacity: .45;
 }
@@ -522,10 +523,14 @@ body {
 
 .scratch {
     position: absolute;
+
     width: 120px;
     height: 1px;
+
     background: rgba(210,205,190,.12);
+
     transform: rotate(-7deg);
+
     opacity: .7;
     z-index: 4;
 }
@@ -554,9 +559,12 @@ body {
     position: absolute;
     top: 0;
     right: 0;
+
     width: 50%;
     height: 100%;
+
     pointer-events: none;
+
     transform-origin: left center;
 
     background:
@@ -639,20 +647,25 @@ body {
 
 .close-book {
     position: fixed;
+
     top: 25px;
     right: 30px;
+
     z-index: 250;
 
     width: 38px;
     height: 38px;
 
     border: 1px solid rgba(210,200,180,.25);
+
     background: rgba(0,0,0,.25);
 
     color: #d8d0c0;
+
     font-size: 23px;
 
     cursor: pointer;
+
     opacity: .65;
 
     transition:
@@ -701,6 +714,7 @@ body {
     position: relative;
 
     width: min(620px, 90vw);
+
     padding: 50px;
 
     background:
@@ -718,6 +732,7 @@ body {
 
 .close {
     position: absolute;
+
     top: 15px;
     right: 18px;
 
@@ -725,6 +740,7 @@ body {
     background: none;
 
     color: #c9c1b0;
+
     font-size: 26px;
 
     cursor: pointer;
@@ -754,6 +770,7 @@ body {
 
 .warning {
     margin-top: 25px;
+
     font-family: "IM Fell English", serif;
     font-size: 10px;
     letter-spacing: .2em;
@@ -821,6 +838,7 @@ body {
         height: 100%;
 
         display: flex;
+
         align-items: center;
         justify-content: center;
 
@@ -830,9 +848,12 @@ body {
     .book {
         width: 96vw;
         max-width: 96vw;
+
         height: auto;
         aspect-ratio: 3 / 2;
+
         max-height: none;
+
         flex-shrink: 0;
 
         transform:
@@ -871,6 +892,7 @@ body {
     .manuscript {
         width: 78%;
         max-width: 78%;
+
         font-size: 7px;
         line-height: 1.45;
 
@@ -886,6 +908,7 @@ body {
     .right-text p {
         width: 78%;
         max-width: 78%;
+
         font-size: 7px;
         line-height: 1.5;
 
@@ -899,10 +922,7 @@ body {
         letter-spacing: .25em;
     }
 
-    .fragment-one-left .page-content {
-        transform: translateY(1.1cm);
-    }
-
+    .fragment-one-left .page-content,
     .fragment-two-left .page-content {
         transform: translateY(1.1cm);
     }
@@ -919,6 +939,7 @@ body {
     .fragment-two-left .manuscript {
         width: 78%;
         max-width: 78%;
+
         font-size: 7px;
         line-height: 1.4;
     }
@@ -949,8 +970,10 @@ body {
     .close-book {
         top: 10px;
         right: 10px;
+
         width: 32px;
         height: 32px;
+
         font-size: 20px;
     }
 
@@ -1014,6 +1037,7 @@ body {
     .right-text p {
         width: 76%;
         max-width: 76%;
+
         font-size: 6px;
         line-height: 1.35;
     }
@@ -1031,7 +1055,7 @@ body {
 
 /* =========================================================
    MOBILE LANDSCAPE
-   REAL NATIVE TOUCH SCROLL
+   FIXED BOOK SIZE + NATIVE VERTICAL SCROLL
    ========================================================= */
 
 @media (max-width:700px) and (orientation:landscape) {
@@ -1045,9 +1069,10 @@ body {
         padding: 0;
 
         overflow: hidden;
-
-        touch-action: auto;
     }
+
+
+    /* REAL SCROLL AREA */
 
     .book-scroll {
 
@@ -1067,8 +1092,8 @@ body {
 
         scrollbar-width: none;
 
-        padding-top: 10px;
-        padding-bottom: 40px;
+        padding-top: 8vh;
+        padding-bottom: 8vh;
     }
 
     .book-scroll::-webkit-scrollbar {
@@ -1077,17 +1102,24 @@ body {
         height: 0;
     }
 
+
+    /*
+       IMPORTANT:
+       In landscape we size the book by HEIGHT,
+       not by VW.
+    */
+
     .book {
 
-        width: 92vw;
-        max-width: 92vw;
+        height: 88vh;
+        width: auto;
 
-        height: auto;
         aspect-ratio: 3 / 2;
 
+        max-width: none;
         max-height: none;
 
-        margin: 10px auto 40px auto;
+        margin: 0 auto 8vh auto;
 
         flex-shrink: 0;
 
@@ -1104,6 +1136,9 @@ body {
             rotateX(1deg)
             scale(1);
     }
+
+
+    /* LANDSCAPE TYPOGRAPHY */
 
     .page {
         padding: 5% 6%;
@@ -1126,8 +1161,10 @@ body {
     }
 
     .manuscript {
+
         width: 78%;
         max-width: 78%;
+
         font-size: 6px;
         line-height: 1.35;
 
@@ -1141,8 +1178,10 @@ body {
     }
 
     .right-text p {
+
         width: 78%;
         max-width: 78%;
+
         font-size: 6px;
         line-height: 1.4;
 
@@ -1155,6 +1194,7 @@ body {
         font-size: 4px;
         letter-spacing: .22em;
     }
+
 
     .fragment-one-left .page-content,
     .fragment-two-left .page-content {
@@ -1171,21 +1211,28 @@ body {
     }
 
     .fragment-two-left .manuscript {
+
         width: 78%;
         max-width: 78%;
+
         font-size: 6px;
         line-height: 1.35;
     }
 
+
     .fragment-two-image {
+
         padding: 6% 5%;
+
         transform: translateX(-32px);
     }
 
     .fragment-two-image img {
+
         width: 100%;
         height: 100%;
     }
+
 
     .page-number {
         bottom: 4%;
@@ -1200,15 +1247,19 @@ body {
         right: 7%;
     }
 
+
     .close-book {
+
         top: 8px;
         right: 8px;
+
         width: 30px;
         height: 30px;
+
         font-size: 19px;
     }
-}
 
+}
 </style>
 </head>
 
@@ -1264,11 +1315,10 @@ body {
     </button>
 
 
-    <!-- REAL SCROLL AREA -->
-
     <div class="book-scroll" id="bookScroll">
 
         <div class="book" id="book">
+
 
             <div class="spread active" id="fragmentOne">
 
@@ -1489,10 +1539,11 @@ function openBook() {
     fragmentOne.classList.add("active");
     fragmentTwo.classList.remove("active");
 
+    bookScroll.scrollTop = 0;
+
     document.querySelector(".title").style.opacity = "0";
 
     document.querySelector(".enter-hint").style.opacity = "0";
-
 }
 
 
@@ -1511,7 +1562,6 @@ function closeBook() {
     document.querySelector(".title").style.opacity = ".82";
 
     document.querySelector(".enter-hint").style.opacity = ".55";
-
 }
 
 
@@ -1536,7 +1586,6 @@ function turnForward() {
         book.classList.remove("turning-forward");
 
     }, 1000);
-
 }
 
 
@@ -1561,9 +1610,12 @@ function turnBackward() {
         book.classList.remove("turning-backward");
 
     }, 1000);
-
 }
 
+
+/* =========================================================
+   MODAL
+   ========================================================= */
 
 const modal =
     document.getElementById("modal");
@@ -1594,7 +1646,6 @@ const entries = {
 
         warning:
         "FOUND BESIDE THE BOOK"
-
     },
 
     photograph: {
@@ -1608,7 +1659,6 @@ const entries = {
 
         warning:
         "IMAGE RECORD: UNKNOWN"
-
     },
 
     record: {
@@ -1622,7 +1672,6 @@ const entries = {
 
         warning:
         "ARCHIVE ERROR"
-
     }
 
 };
@@ -1638,14 +1687,12 @@ function openModal(type) {
     warning.textContent = entry.warning;
 
     modal.classList.add("active");
-
 }
 
 
 function closeModal() {
 
     modal.classList.remove("active");
-
 }
 
 
