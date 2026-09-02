@@ -734,12 +734,6 @@ body {
         padding-left: 12%;
     }
 
-    /*
-       MOBILE TEXT FIX
-       The text is deliberately smaller than desktop.
-       This prevents it from escaping the parchment page.
-    */
-
     .book-header {
         font-size: 10px;
         letter-spacing: .08em;
@@ -905,6 +899,143 @@ body {
 
     .fragment-two-image {
         transform: translateX(-36px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE ONLY
+   FIX FOR PHONE WHEN ROTATED HORIZONTALLY
+   ========================================================= */
+
+@media (max-width: 700px) and (orientation: landscape) {
+
+    .book-view {
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .book {
+        width: 92vw;
+        max-width: 92vw;
+        height: auto;
+        aspect-ratio: 3 / 2;
+        max-height: 90vh;
+
+        transform:
+            perspective(1200px)
+            rotateX(1deg)
+            scale(.96);
+    }
+
+    .book-view.active .book {
+        transform:
+            perspective(1200px)
+            rotateX(1deg)
+            scale(1);
+    }
+
+    .page {
+        padding: 5% 6%;
+    }
+
+    .page.left {
+        padding-left: 11%;
+    }
+
+    .book-header {
+        font-size: 9px;
+        letter-spacing: .08em;
+        margin-bottom: 4px;
+    }
+
+    .fragment {
+        font-size: 4px;
+        letter-spacing: .12em;
+        margin-bottom: 9px;
+    }
+
+    .manuscript {
+        width: 78%;
+        max-width: 78%;
+        font-size: 6px;
+        line-height: 1.35;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .right-text {
+        padding-bottom: 0;
+        justify-content: center;
+    }
+
+    .right-text p {
+        width: 78%;
+        max-width: 78%;
+        font-size: 6px;
+        line-height: 1.4;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .time-clue {
+        margin-top: 12px;
+        font-size: 4px;
+        letter-spacing: .22em;
+    }
+
+    .fragment-one-left .page-content,
+    .fragment-two-left .page-content {
+        transform: translateY(.35cm);
+    }
+
+    .fragment-two-left .book-header {
+        font-size: 9px;
+    }
+
+    .fragment-two-left .fragment {
+        font-size: 4px;
+        margin-bottom: 9px;
+    }
+
+    .fragment-two-left .manuscript {
+        width: 78%;
+        max-width: 78%;
+        font-size: 6px;
+        line-height: 1.35;
+    }
+
+    .fragment-two-image {
+        padding: 6% 5%;
+        transform: translateX(-32px);
+    }
+
+    .fragment-two-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .page-number {
+        bottom: 4%;
+        font-size: 5px;
+    }
+
+    .page.left .page-number {
+        left: 7%;
+    }
+
+    .page.right .page-number {
+        right: 7%;
+    }
+
+    .close-book {
+        top: 8px;
+        right: 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 19px;
     }
 }
 
