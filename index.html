@@ -460,6 +460,15 @@ body {
 }
 
 /* =========================
+   FRAGMENT I LEFT
+   SAME POSITION AS FRAGMENT II
+   ========================= */
+
+.fragment-one-left .page-content {
+    transform: translateY(4cm);
+}
+
+/* =========================
    FRAGMENT II LEFT
    ========================= */
 
@@ -922,6 +931,12 @@ body {
         font-size: 7px;
     }
 
+    /* Fragment I mobile */
+
+    .fragment-one-left .page-content {
+        transform: translateY(2cm);
+    }
+
     /* Fragment II mobile */
 
     .fragment-two-left .page-content {
@@ -1029,7 +1044,7 @@ body {
 
         <div class="spread active" id="fragmentOne">
 
-            <section class="page left">
+            <section class="page left fragment-one-left">
 
                 <div class="page-content">
 
