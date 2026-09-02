@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,7 +175,7 @@ body {
     }
 }
 
-/* CLICKABLE AREAS */
+/* INVISIBLE CLICKABLE AREAS */
 
 .hotspot {
     position: absolute;
@@ -182,16 +183,11 @@ body {
 
     cursor: pointer;
 
-    border: 1px solid transparent;
+    border: none;
+    background: transparent;
+}
 
-    transition:
-        border-color .4s ease,
-        background .4s ease,
-        box-shadow .4s ease;
-
-    BOOK
-    approximate position based on current artwork
-*/
+/* BOOK */
 
 .book-hotspot {
     width: 57%;
@@ -456,7 +452,6 @@ body {
 
 </div>
 
-
 <!-- MODAL -->
 
 <div class="modal" id="modal">
@@ -476,7 +471,6 @@ body {
     </div>
 
 </div>
-
 
 <script>
 
@@ -562,3 +556,4 @@ document.addEventListener("keydown", function(e) {
 
 </body>
 </html>
+```
