@@ -212,6 +212,11 @@ body {
     height: 25%;
 }
 
+
+/* =========================================================
+   BOOK VIEW
+   ========================================================= */
+
 .book-view {
     position: fixed;
     inset: 0;
@@ -246,6 +251,35 @@ body {
     visibility: visible;
     pointer-events: auto;
 }
+
+
+/* =========================================================
+   INTERNAL SCROLL CONTAINER
+   ========================================================= */
+
+.book-scroll {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    scrollbar-width: none;
+}
+
+.book-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+/* =========================================================
+   BOOK
+   ========================================================= */
 
 .book {
     position: relative;
@@ -282,6 +316,7 @@ body {
         scale(1);
 }
 
+
 /* BOOK SPREADS */
 
 .spread {
@@ -297,6 +332,7 @@ body {
     opacity: 1;
     visibility: visible;
 }
+
 
 /* PAGES */
 
@@ -403,11 +439,13 @@ body {
     text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
+
 /* FRAGMENT I LEFT */
 
 .fragment-one-left .page-content {
     transform: translateY(4cm);
 }
+
 
 /* FRAGMENT II LEFT */
 
@@ -427,6 +465,7 @@ body {
 .fragment-two-left .manuscript {
     font-size: clamp(12px, 1.1vw, 16px);
 }
+
 
 /* FRAGMENT II IMAGE */
 
@@ -457,6 +496,7 @@ body {
         drop-shadow(0 4px 8px rgba(0,0,0,.35));
 }
 
+
 /* PAGE NUMBERS */
 
 .page-number {
@@ -476,6 +516,7 @@ body {
 .page.right .page-number {
     right: 10%;
 }
+
 
 /* SCRATCHES */
 
@@ -506,7 +547,8 @@ body {
     transform: rotate(-2deg);
 }
 
-/* PAGE TURN — BOOK ENGINE */
+
+/* PAGE TURN */
 
 .page-turn {
     position: absolute;
@@ -516,6 +558,7 @@ body {
     height: 100%;
     pointer-events: none;
     transform-origin: left center;
+
     background:
         linear-gradient(
             90deg,
@@ -524,7 +567,9 @@ body {
             rgba(255,255,255,.04) 60%,
             rgba(50,35,20,.18)
         );
+
     box-shadow: -12px 0 25px rgba(0,0,0,.2);
+
     opacity: 0;
     z-index: 30;
 }
@@ -534,6 +579,7 @@ body {
 }
 
 @keyframes pageTurnForward {
+
     0% {
         opacity: 0;
         transform: rotateY(0deg);
@@ -563,6 +609,7 @@ body {
 }
 
 @keyframes pageTurnBackward {
+
     0% {
         opacity: 0;
         transform: rotateY(-180deg);
@@ -587,6 +634,7 @@ body {
     }
 }
 
+
 /* CLOSE BUTTON */
 
 .close-book {
@@ -594,14 +642,19 @@ body {
     top: 25px;
     right: 30px;
     z-index: 250;
+
     width: 38px;
     height: 38px;
+
     border: 1px solid rgba(210,200,180,.25);
     background: rgba(0,0,0,.25);
+
     color: #d8d0c0;
     font-size: 23px;
+
     cursor: pointer;
     opacity: .65;
+
     transition:
         opacity .3s ease,
         background .3s ease;
@@ -612,20 +665,27 @@ body {
     background: rgba(0,0,0,.5);
 }
 
+
 /* MODAL */
 
 .modal {
     position: fixed;
     inset: 0;
+
     z-index: 300;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 30px;
+
     background: rgba(0,0,0,.78);
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
     transition:
         opacity .5s ease,
         visibility .5s ease;
@@ -639,26 +699,34 @@ body {
 
 .modal-content {
     position: relative;
+
     width: min(620px, 90vw);
     padding: 50px;
+
     background:
         linear-gradient(
             145deg,
             #191713,
             #0b0a08
         );
+
     border: 1px solid rgba(210,200,180,.15);
-    box-shadow: 0 30px 100px rgba(0,0,0,.85);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.85);
 }
 
 .close {
     position: absolute;
     top: 15px;
     right: 18px;
+
     border: none;
     background: none;
+
     color: #c9c1b0;
     font-size: 26px;
+
     cursor: pointer;
     opacity: .65;
 }
@@ -694,8 +762,7 @@ body {
 
 
 /* =========================================================
-   MOBILE ONLY
-   EVERYTHING ABOVE THIS LINE IS THE DESKTOP VERSION
+   MOBILE
    ========================================================= */
 
 @media (max-width:700px) {
@@ -749,6 +816,17 @@ body {
         overflow: hidden;
     }
 
+    .book-scroll {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
     .book {
         width: 96vw;
         max-width: 96vw;
@@ -795,6 +873,7 @@ body {
         max-width: 78%;
         font-size: 7px;
         line-height: 1.45;
+
         overflow-wrap: break-word;
         word-break: normal;
     }
@@ -809,6 +888,7 @@ body {
         max-width: 78%;
         font-size: 7px;
         line-height: 1.5;
+
         overflow-wrap: break-word;
         word-break: normal;
     }
@@ -894,7 +974,9 @@ body {
 }
 
 
-/* EXTRA SMALL PHONES */
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
 
 @media (max-width:380px) {
 
@@ -948,8 +1030,8 @@ body {
 
 
 /* =========================================================
-   MOBILE LANDSCAPE ONLY
-   REAL TOUCH SCROLL
+   MOBILE LANDSCAPE
+   REAL NATIVE TOUCH SCROLL
    ========================================================= */
 
 @media (max-width:700px) and (orientation:landscape) {
@@ -960,27 +1042,43 @@ body {
         width: 100%;
         height: 100dvh;
 
-        padding: 10px 0 30px 0;
+        padding: 0;
+
+        overflow: hidden;
+
+        touch-action: auto;
+    }
+
+    .book-scroll {
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
 
         overflow-x: hidden;
         overflow-y: auto;
 
         -webkit-overflow-scrolling: touch;
 
-        touch-action: none;
+        touch-action: pan-y;
 
         overscroll-behavior-y: contain;
 
         scrollbar-width: none;
+
+        padding-top: 10px;
+        padding-bottom: 40px;
     }
 
-    .book-view::-webkit-scrollbar {
+    .book-scroll::-webkit-scrollbar {
         display: none;
         width: 0;
         height: 0;
     }
 
     .book {
+
         width: 92vw;
         max-width: 92vw;
 
@@ -989,7 +1087,7 @@ body {
 
         max-height: none;
 
-        margin: 10px auto 30px auto;
+        margin: 10px auto 40px auto;
 
         flex-shrink: 0;
 
@@ -1000,6 +1098,7 @@ body {
     }
 
     .book-view.active .book {
+
         transform:
             perspective(1200px)
             rotateX(1deg)
@@ -1164,165 +1263,172 @@ body {
         ×
     </button>
 
-    <div class="book" id="book">
 
-        <div class="spread active" id="fragmentOne">
+    <!-- REAL SCROLL AREA -->
 
-            <section class="page left fragment-one-left">
+    <div class="book-scroll" id="bookScroll">
 
-                <div class="page-content">
+        <div class="book" id="book">
 
-                    <div class="book-header">
-                        BOOK OF CHALK
-                    </div>
+            <div class="spread active" id="fragmentOne">
 
-                    <div class="fragment">
-                        Fragment I
-                    </div>
+                <section class="page left fragment-one-left">
 
-                    <div class="manuscript">
+                    <div class="page-content">
 
-                        <em>
-                            This record was never meant to be found.
-                        </em>
+                        <div class="book-header">
+                            BOOK OF CHALK
+                        </div>
 
-                        <br><br>
+                        <div class="fragment">
+                            Fragment I
+                        </div>
 
-                        If you have found this book,
-                        do not assume you were meant to.
+                        <div class="manuscript">
 
-                        <br><br>
+                            <em>
+                                This record was never meant to be found.
+                            </em>
 
-                        The pages do not reveal what happened.
+                            <br><br>
 
-                        <br>
+                            If you have found this book,
+                            do not assume you were meant to.
 
-                        They reveal what remembers you.
+                            <br><br>
 
-                    </div>
+                            The pages do not reveal what happened.
 
-                </div>
+                            <br>
 
-                <div class="scratch one"></div>
-                <div class="scratch two"></div>
+                            They reveal what remembers you.
 
-                <div class="page-number">
-                    I
-                </div>
-
-            </section>
-
-
-            <section
-                class="page right"
-                onclick="turnForward()">
-
-                <div class="page-content">
-
-                    <div class="right-text">
-
-                        <p>
-                            Some pages were written
-                            before they happened.
-                        </p>
-
-                        <div class="time-clue">
-                            13:13
                         </div>
 
                     </div>
 
-                </div>
+                    <div class="scratch one"></div>
+                    <div class="scratch two"></div>
 
-                <div class="scratch three"></div>
+                    <div class="page-number">
+                        I
+                    </div>
 
-                <div class="page-number">
-                    II
-                </div>
+                </section>
 
-            </section>
+
+                <section
+                    class="page right"
+                    onclick="turnForward()">
+
+                    <div class="page-content">
+
+                        <div class="right-text">
+
+                            <p>
+                                Some pages were written
+                                before they happened.
+                            </p>
+
+                            <div class="time-clue">
+                                13:13
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="scratch three"></div>
+
+                    <div class="page-number">
+                        II
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <div class="spread" id="fragmentTwo">
+
+                <section
+                    class="page left fragment-two-left"
+                    onclick="turnBackward()">
+
+                    <div class="page-content">
+
+                        <div class="book-header">
+                            BOOK OF CHALK
+                        </div>
+
+                        <div class="fragment">
+                            Fragment II
+                        </div>
+
+                        <div class="manuscript">
+
+                            <em>
+                                Crush, break…
+                                your pulse now bends to me.
+                            </em>
+
+                            <br><br>
+
+                            Screams swallowed…
+                            shadows set you free.
+
+                            <br><br>
+
+                            Tick… tock…
+                            chaos reigns, time entwines.
+
+                            <br><br>
+
+                            Your heart is mine…
+                            lost within the lines.
+
+                        </div>
+
+                    </div>
+
+                    <div class="scratch one"></div>
+                    <div class="scratch two"></div>
+
+                    <div class="page-number">
+                        III
+                    </div>
+
+                </section>
+
+
+                <section class="page right">
+
+                    <div class="page-content">
+
+                        <div class="fragment-two-image">
+
+                            <img
+                                src="fragment-2.jpg"
+                                alt="Fragment II illustration">
+
+                        </div>
+
+                    </div>
+
+                    <div class="scratch three"></div>
+
+                    <div class="page-number">
+                        IV
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <div class="page-turn"></div>
 
         </div>
-
-
-        <div class="spread" id="fragmentTwo">
-
-            <section
-                class="page left fragment-two-left"
-                onclick="turnBackward()">
-
-                <div class="page-content">
-
-                    <div class="book-header">
-                        BOOK OF CHALK
-                    </div>
-
-                    <div class="fragment">
-                        Fragment II
-                    </div>
-
-                    <div class="manuscript">
-
-                        <em>
-                            Crush, break…
-                            your pulse now bends to me.
-                        </em>
-
-                        <br><br>
-
-                        Screams swallowed…
-                        shadows set you free.
-
-                        <br><br>
-
-                        Tick… tock…
-                        chaos reigns, time entwines.
-
-                        <br><br>
-
-                        Your heart is mine…
-                        lost within the lines.
-
-                    </div>
-
-                </div>
-
-                <div class="scratch one"></div>
-                <div class="scratch two"></div>
-
-                <div class="page-number">
-                    III
-                </div>
-
-            </section>
-
-
-            <section class="page right">
-
-                <div class="page-content">
-
-                    <div class="fragment-two-image">
-
-                        <img
-                            src="fragment-2.jpg"
-                            alt="Fragment II illustration">
-
-                    </div>
-
-                </div>
-
-                <div class="scratch three"></div>
-
-                <div class="page-number">
-                    IV
-                </div>
-
-            </section>
-
-        </div>
-
-
-        <div class="page-turn"></div>
 
     </div>
 
@@ -1363,6 +1469,9 @@ body {
 const bookView =
     document.getElementById("bookView");
 
+const bookScroll =
+    document.getElementById("bookScroll");
+
 const book =
     document.getElementById("book");
 
@@ -1396,6 +1505,8 @@ function closeBook() {
 
     book.classList.remove("turning-forward");
     book.classList.remove("turning-backward");
+
+    bookScroll.scrollTop = 0;
 
     document.querySelector(".title").style.opacity = ".82";
 
@@ -1562,107 +1673,6 @@ document.addEventListener("keydown", function(e) {
     }
 
 });
-
-
-/* =========================================================
-   LANDSCAPE TOUCH SCROLL
-   MANUAL VERTICAL SCROLL FOR MOBILE LANDSCAPE
-   ========================================================= */
-
-let touchStartY = 0;
-let lastTouchY = 0;
-let touchMoved = false;
-let scrollingTouch = false;
-
-function isLandscapePhone() {
-
-    return window.matchMedia(
-        "(max-width:700px) and (orientation:landscape)"
-    ).matches;
-
-}
-
-
-bookView.addEventListener(
-    "touchstart",
-    function(e) {
-
-        if (!isLandscapePhone()) return;
-
-        if (!bookView.classList.contains("active")) return;
-
-        touchStartY = e.touches[0].clientY;
-        lastTouchY = touchStartY;
-
-        touchMoved = false;
-        scrollingTouch = false;
-
-    },
-    { passive: true }
-);
-
-
-bookView.addEventListener(
-    "touchmove",
-    function(e) {
-
-        if (!isLandscapePhone()) return;
-
-        if (!bookView.classList.contains("active")) return;
-
-        const currentY =
-            e.touches[0].clientY;
-
-        const delta =
-            lastTouchY - currentY;
-
-        if (Math.abs(currentY - touchStartY) > 5) {
-
-            touchMoved = true;
-            scrollingTouch = true;
-
-        }
-
-        if (scrollingTouch) {
-
-            bookView.scrollTop =
-                bookView.scrollTop + delta;
-
-            e.preventDefault();
-
-        }
-
-        lastTouchY = currentY;
-
-    },
-    { passive: false }
-);
-
-
-bookView.addEventListener(
-    "touchend",
-    function(e) {
-
-        if (!isLandscapePhone()) return;
-
-        scrollingTouch = false;
-
-        /*
-         * If the finger actually moved,
-         * prevent accidental page clicks after scrolling.
-         */
-
-        if (touchMoved) {
-
-            setTimeout(function() {
-                touchMoved = false;
-            }, 100);
-
-        }
-
-    },
-    { passive: true }
-);
 
 </script>
 
