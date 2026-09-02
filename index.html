@@ -1061,18 +1061,14 @@ body {
 
     .book-view {
         display: flex;
-
         width: 100%;
         height: 100dvh;
-
         padding: 0;
 
         align-items: center;
         justify-content: center;
 
         overflow: hidden;
-
-        touch-action: manipulation;
     }
 
     .book-scroll {
@@ -1080,7 +1076,6 @@ body {
         height: 100%;
 
         display: flex;
-
         align-items: center;
         justify-content: center;
 
@@ -1100,19 +1095,14 @@ body {
     /* =====================================================
        LANDSCAPE BOOK SIZE
 
-       The complete 3:2 spread must fit inside BOTH:
-       - the screen width
-       - the screen height
-
-       No scrolling.
-       No cropping.
-       No distortion.
+       The complete 3:2 spread must fit completely
+       inside the available screen width AND height.
        ===================================================== */
 
     .book {
         width: min(
             88vw,
-            calc(100dvh * 1.5)
+            calc(82dvh * 1.5)
         );
 
         height: auto;
@@ -1243,8 +1233,8 @@ body {
 
         font-size: 19px;
     }
-
 }
+
 </style>
 </head>
 
