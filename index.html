@@ -1055,86 +1055,94 @@ body {
 
 /* =========================================================
    MOBILE LANDSCAPE
-   FIXED BOOK SIZE + NATIVE VERTICAL SCROLL
+   ONLY LANDSCAPE IS MODIFIED
    ========================================================= */
 
 @media (max-width:700px) and (orientation:landscape) {
 
     .book-view {
-        display: block;
+        display: flex;
 
         width: 100%;
         height: 100dvh;
 
         padding: 0;
 
+        align-items: center;
+        justify-content: center;
+
         overflow: hidden;
+
+        touch-action: pinch-zoom;
     }
 
-
-    /* REAL SCROLL AREA */
 
     .book-scroll {
 
         width: 100%;
         height: 100%;
 
-        display: block;
+        display: flex;
 
-        overflow-x: hidden;
-        overflow-y: auto;
+        align-items: center;
+        justify-content: center;
 
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden;
 
-        touch-action: pan-y;
+        padding: 0;
+        margin: 0;
 
-        overscroll-behavior-y: contain;
+        touch-action: pinch-zoom;
 
         scrollbar-width: none;
-
-        padding-top: 8vh;
-        padding-bottom: 8vh;
     }
 
     .book-scroll::-webkit-scrollbar {
         display: none;
-        width: 0;
-        height: 0;
     }
 
 
     /*
-       IMPORTANT:
-       In landscape we size the book by HEIGHT,
-       not by VW.
+       LANDSCAPE BOOK
+
+       The width is calculated from the available
+       screen height AND width.
+
+       Because the spread is exactly 3:2,
+       this guarantees the complete book fits
+       inside the landscape viewport.
     */
 
     .book {
 
-        height: 88vh;
-        width: auto;
+        width: min(
+            92vw,
+            calc((100dvh - 20px) * 1.5)
+        );
+
+        height: auto;
 
         aspect-ratio: 3 / 2;
 
-        max-width: none;
-        max-height: none;
+        max-width: 92vw;
+        max-height: calc(100dvh - 20px);
 
-        margin: 0 auto 8vh auto;
+        margin: 0;
 
         flex-shrink: 0;
 
-        transform:
-            perspective(1200px)
-            rotateX(1deg)
-            scale(.96);
+        /*
+           No rotation / perspective / scale here.
+           This is intentional: the entire spread
+           must remain visible.
+        */
+
+        transform: none !important;
     }
 
     .book-view.active .book {
 
-        transform:
-            perspective(1200px)
-            rotateX(1deg)
-            scale(1);
+        transform: none !important;
     }
 
 
