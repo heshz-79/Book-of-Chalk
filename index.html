@@ -283,6 +283,7 @@ body {
 }
 
 /* BOOK SPREADS */
+
 .spread {
     position: absolute;
     inset: 0;
@@ -298,6 +299,7 @@ body {
 }
 
 /* PAGES */
+
 .page {
     position: relative;
     width: 50%;
@@ -402,11 +404,13 @@ body {
 }
 
 /* FRAGMENT I LEFT */
+
 .fragment-one-left .page-content {
     transform: translateY(4cm);
 }
 
 /* FRAGMENT II LEFT */
+
 .fragment-two-left .page-content {
     transform: translateY(4cm);
 }
@@ -425,6 +429,7 @@ body {
 }
 
 /* FRAGMENT II IMAGE */
+
 .fragment-two-image {
     width: 100%;
     height: 100%;
@@ -453,6 +458,7 @@ body {
 }
 
 /* PAGE NUMBERS */
+
 .page-number {
     position: absolute;
     bottom: 6%;
@@ -472,6 +478,7 @@ body {
 }
 
 /* SCRATCHES */
+
 .scratch {
     position: absolute;
     width: 120px;
@@ -500,6 +507,7 @@ body {
 }
 
 /* PAGE TURN — BOOK ENGINE */
+
 .page-turn {
     position: absolute;
     top: 0;
@@ -526,11 +534,28 @@ body {
 }
 
 @keyframes pageTurnForward {
-    0% { opacity: 0; transform: rotateY(0deg); }
-    15% { opacity: .8; }
-    50% { opacity: 1; transform: rotateY(-88deg); }
-    85% { opacity: .8; }
-    100% { opacity: 0; transform: rotateY(-180deg); }
+    0% {
+        opacity: 0;
+        transform: rotateY(0deg);
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotateY(-88deg);
+    }
+
+    85% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotateY(-180deg);
+    }
 }
 
 .book.turning-backward .page-turn {
@@ -538,14 +563,32 @@ body {
 }
 
 @keyframes pageTurnBackward {
-    0% { opacity: 0; transform: rotateY(-180deg); }
-    15% { opacity: .8; }
-    50% { opacity: 1; transform: rotateY(-88deg); }
-    85% { opacity: .8; }
-    100% { opacity: 0; transform: rotateY(0deg); }
+    0% {
+        opacity: 0;
+        transform: rotateY(-180deg);
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotateY(-88deg);
+    }
+
+    85% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotateY(0deg);
+    }
 }
 
 /* CLOSE BUTTON */
+
 .close-book {
     position: fixed;
     top: 25px;
@@ -570,6 +613,7 @@ body {
 }
 
 /* MODAL */
+
 .modal {
     position: fixed;
     inset: 0;
@@ -654,7 +698,7 @@ body {
    EVERYTHING ABOVE THIS LINE IS THE DESKTOP VERSION
    ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
 
     .title {
         top: 24px;
@@ -852,7 +896,7 @@ body {
 
 /* EXTRA SMALL PHONES */
 
-@media (max-width: 380px) {
+@media (max-width:380px) {
 
     .book {
         width: 94vw;
@@ -905,20 +949,30 @@ body {
 
 /* =========================================================
    MOBILE LANDSCAPE ONLY
-   SCROLL ENABLED WHEN PHONE IS ROTATED
+   REAL TOUCH SCROLL
    ========================================================= */
 
-@media (max-width: 700px) and (orientation: landscape) {
+@media (max-width:700px) and (orientation:landscape) {
 
     .book-view {
-        padding: 10px 0;
-        align-items: flex-start;
-        justify-content: center;
+        /*
+         * IMPORTANT:
+         * Landscape becomes a real scrolling container.
+         * We intentionally stop using flex centering here.
+         */
+        display: block;
 
-        overflow-y: auto;
+        width: 100%;
+        height: 100dvh;
+
+        padding: 10px 0 30px 0;
+
         overflow-x: hidden;
+        overflow-y: auto;
 
         -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        overscroll-behavior-y: contain;
     }
 
     .book {
@@ -929,6 +983,8 @@ body {
         aspect-ratio: 3 / 2;
 
         max-height: none;
+
+        margin: 10px auto 30px auto;
 
         flex-shrink: 0;
 
