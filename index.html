@@ -1075,26 +1075,19 @@ body {
         touch-action: manipulation;
     }
 
-
     .book-scroll {
-
         width: 100%;
         height: 100%;
 
         display: flex;
-        flex-direction: column;
 
         align-items: center;
-        justify-content: safe center;
+        justify-content: center;
 
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden;
 
         padding: 0;
         margin: 0;
-
-        touch-action: pan-y;
 
         scrollbar-width: none;
     }
@@ -1104,46 +1097,39 @@ body {
     }
 
 
-    /*
-       LANDSCAPE BOOK
+    /* =====================================================
+       LANDSCAPE BOOK SIZE
 
-       The width is calculated from the available
-       screen height AND width.
+       The complete 3:2 spread must fit inside BOTH:
+       - the screen width
+       - the screen height
 
-       Because the spread is exactly 3:2,
-       this guarantees the complete book fits
-       inside the landscape viewport.
-    */
+       No scrolling.
+       No cropping.
+       No distortion.
+       ===================================================== */
 
     .book {
-
         width: min(
-            92vw,
-            calc((100dvh - 20px) * 1.5)
+            88vw,
+            calc(100dvh * 1.5)
         );
 
         height: auto;
 
         aspect-ratio: 3 / 2;
 
-        max-width: 92vw;
-        max-height: calc(100dvh - 20px);
+        max-width: 88vw;
+        max-height: 82dvh;
 
-        margin: auto;
+        margin: 0;
 
         flex-shrink: 0;
-
-        /*
-           No rotation / perspective / scale here.
-           This is intentional: the entire spread
-           must remain visible.
-        */
 
         transform: none !important;
     }
 
     .book-view.active .book {
-
         transform: none !important;
     }
 
@@ -1159,7 +1145,7 @@ body {
     }
 
     .book-header {
-        font-size: 9px;
+        font-size: 8px;
         letter-spacing: .08em;
         margin-bottom: 4px;
     }
@@ -1167,15 +1153,14 @@ body {
     .fragment {
         font-size: 4px;
         letter-spacing: .12em;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
     }
 
     .manuscript {
-
         width: 78%;
         max-width: 78%;
 
-        font-size: 6px;
+        font-size: 5.5px;
         line-height: 1.35;
 
         overflow-wrap: break-word;
@@ -1188,11 +1173,10 @@ body {
     }
 
     .right-text p {
-
         width: 78%;
         max-width: 78%;
 
-        font-size: 6px;
+        font-size: 5.5px;
         line-height: 1.4;
 
         overflow-wrap: break-word;
@@ -1200,49 +1184,42 @@ body {
     }
 
     .time-clue {
-        margin-top: 12px;
+        margin-top: 10px;
         font-size: 4px;
         letter-spacing: .22em;
     }
 
-
     .fragment-one-left .page-content,
     .fragment-two-left .page-content {
-        transform: translateY(.35cm);
+        transform: translateY(.25cm);
     }
 
     .fragment-two-left .book-header {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .fragment-two-left .fragment {
         font-size: 4px;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
     }
 
     .fragment-two-left .manuscript {
-
         width: 78%;
         max-width: 78%;
 
-        font-size: 6px;
+        font-size: 5.5px;
         line-height: 1.35;
     }
 
-
     .fragment-two-image {
-
         padding: 6% 5%;
-
-        transform: translateX(-32px);
+        transform: translateX(-28px);
     }
 
     .fragment-two-image img {
-
         width: 100%;
         height: 100%;
     }
-
 
     .page-number {
         bottom: 4%;
@@ -1257,9 +1234,7 @@ body {
         right: 7%;
     }
 
-
     .close-book {
-
         top: 8px;
         right: 8px;
 
