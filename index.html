@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +75,7 @@ body {
 
     transition:
         opacity 1s ease,
-        transform 1.2s ease;
+        transform 1s ease;
 }
 
 .book-scene::after {
@@ -335,7 +336,7 @@ body {
 }
 
 .page.left {
-    cursor: default;
+    cursor: pointer;
     padding-left: 15%;
 }
 
@@ -391,7 +392,7 @@ body {
 
     font-family: "IM Fell English", serif;
 
-    font-size: clamp(14px, 1.25vw, 18px);
+    font-size: clamp(13px, 1.2vw, 17px);
 
     line-height: 1.75;
 
@@ -473,6 +474,8 @@ body {
     padding: 9% 7%;
 
     pointer-events: none;
+
+    transform: translateX(-35px);
 }
 
 .fragment-two-image img {
@@ -484,11 +487,6 @@ body {
     object-fit: contain;
 
     object-position: center;
-
-    filter:
-        contrast(1.08)
-        brightness(.82)
-        saturate(.78);
 
     opacity: .94;
 
@@ -671,6 +669,119 @@ body {
 }
 
 /* =========================
+   MODAL
+   ========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 300;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(0,0,0,.78);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-content {
+    position: relative;
+
+    width: min(620px, 90vw);
+
+    padding: 50px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191713,
+            #0b0a08
+        );
+
+    border: 1px solid rgba(210,200,180,.15);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.85);
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    border: none;
+    background: none;
+
+    color: #c9c1b0;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    opacity: .65;
+}
+
+.modal-label {
+    font-family: "IM Fell English", serif;
+
+    font-size: 10px;
+
+    letter-spacing: .3em;
+
+    opacity: .5;
+
+    margin-bottom: 15px;
+}
+
+.modal h2 {
+    font-family: "IM Fell English", serif;
+
+    font-size: 28px;
+
+    font-weight: 400;
+
+    margin-bottom: 20px;
+}
+
+.modal p {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    opacity: .78;
+}
+
+.warning {
+    margin-top: 25px;
+
+    font-family: "IM Fell English", serif;
+
+    font-size: 10px;
+
+    letter-spacing: .2em;
+
+    opacity: .4;
+}
+
+/* =========================
    MOBILE
    ========================= */
 
@@ -758,6 +869,7 @@ body {
 
     .fragment-two-image {
         padding: 10% 5%;
+        transform: translateX(-18px);
     }
 
     .page-number {
@@ -776,6 +888,10 @@ body {
     .close-book {
         top: 12px;
         right: 12px;
+    }
+
+    .modal-content {
+        padding: 35px 25px;
     }
 }
 </style>
@@ -921,7 +1037,9 @@ body {
 
         <div class="spread" id="fragmentTwo">
 
-            <section class="page left">
+            <section
+                class="page left"
+                onclick="turnBackToFragmentOne()">
 
                 <div class="page-content">
 
@@ -969,9 +1087,7 @@ body {
             </section>
 
 
-            <section
-                class="page right"
-                onclick="turnBackToFragmentOne()">
+            <section class="page right">
 
                 <div class="page-content">
 
@@ -980,7 +1096,7 @@ body {
                         <img
                             src="fragment-2.jpg"
                             alt="">
-                            
+
                     </div>
 
                 </div>
@@ -1049,6 +1165,13 @@ function closeBook() {
     document.querySelector(".title").style.opacity = ".82";
     document.querySelector(".enter-hint").style.opacity = ".55";
 }
+
+
+/* =========================
+   PAGE NAVIGATION
+   RIGHT = FORWARD
+   LEFT = BACK
+   ========================= */
 
 function turnToFragmentTwo() {
 
@@ -1181,3 +1304,4 @@ document.addEventListener("keydown", function(e) {
 
 </body>
 </html>
+```
