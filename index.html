@@ -648,44 +648,36 @@ body {
     opacity: .4;
 }
 
+
 /* =========================================================
    MOBILE ONLY
-   DESKTOP / LAPTOP STYLES ABOVE ARE UNCHANGED
+   EVERYTHING ABOVE THIS LINE IS THE DESKTOP VERSION
    ========================================================= */
 
 @media (max-width: 700px) {
 
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
     .title {
-        top: 22px;
+        top: 24px;
     }
 
     .title h1 {
-        font-size: 20px;
-        letter-spacing: .14em;
+        font-size: 22px;
+        letter-spacing: .15em;
     }
 
     .title p {
-        font-size: 9px;
-        letter-spacing: .18em;
+        font-size: 10px;
     }
 
     .enter-hint {
-        bottom: 20px;
-        font-size: 9px;
+        bottom: 22px;
+        font-size: 10px;
     }
 
-    /* HERO */
     .book-hotspot {
-        width: 78%;
-        height: 50%;
-        left: 11%;
+        width: 75%;
+        height: 48%;
+        left: 12%;
         top: 25%;
     }
 
@@ -706,7 +698,6 @@ body {
         height: 17%;
     }
 
-    /* BOOK VIEW */
     .book-view {
         padding: 0;
         align-items: center;
@@ -725,7 +716,7 @@ body {
         transform:
             perspective(1200px)
             rotateX(1deg)
-            scale(.96);
+            scale(.98);
     }
 
     .book-view.active .book {
@@ -735,80 +726,85 @@ body {
             scale(1);
     }
 
-    /* PAGES */
     .page {
-        padding: 7% 7%;
+        padding: 7% 6%;
     }
 
     .page.left {
-        padding-left: 13%;
+        padding-left: 12%;
     }
 
-    .page-content {
-        width: 100%;
-        height: 100%;
-    }
+    /*
+       MOBILE TEXT FIX
+       The text is deliberately smaller than desktop.
+       This prevents it from escaping the parchment page.
+    */
 
-    /* TEXT */
     .book-header {
-        font-size: 13px;
-        letter-spacing: .10em;
-        margin-bottom: 6px;
+        font-size: 10px;
+        letter-spacing: .08em;
+        margin-bottom: 5px;
     }
 
     .fragment {
-        font-size: 6px;
-        letter-spacing: .18em;
-        margin-bottom: 17px;
+        font-size: 5px;
+        letter-spacing: .13em;
+        margin-bottom: 13px;
     }
 
     .manuscript {
-        max-width: 90%;
-        font-size: 10px;
-        line-height: 1.55;
+        width: 78%;
+        max-width: 78%;
+        font-size: 7px;
+        line-height: 1.45;
+        overflow-wrap: break-word;
+        word-break: normal;
     }
 
     .right-text {
-        padding-bottom: 5px;
+        padding-bottom: 0;
+        justify-content: center;
     }
 
     .right-text p {
-        max-width: 90%;
-        font-size: 10px;
-        line-height: 1.6;
+        width: 78%;
+        max-width: 78%;
+        font-size: 7px;
+        line-height: 1.5;
+        overflow-wrap: break-word;
+        word-break: normal;
     }
 
     .time-clue {
-        margin-top: 20px;
-        font-size: 6px;
-        letter-spacing: .30em;
+        margin-top: 16px;
+        font-size: 5px;
+        letter-spacing: .25em;
     }
 
-    /* FRAGMENT I */
     .fragment-one-left .page-content {
-        transform: translateY(1.4cm);
+        transform: translateY(1.1cm);
     }
 
-    /* FRAGMENT II */
     .fragment-two-left .page-content {
-        transform: translateY(1.4cm);
+        transform: translateY(1.1cm);
     }
 
     .fragment-two-left .book-header {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .fragment-two-left .fragment {
-        font-size: 6px;
-        margin-bottom: 15px;
+        font-size: 5px;
+        margin-bottom: 12px;
     }
 
     .fragment-two-left .manuscript {
-        font-size: 9px;
-        line-height: 1.5;
+        width: 78%;
+        max-width: 78%;
+        font-size: 7px;
+        line-height: 1.4;
     }
 
-    /* FRAGMENT II IMAGE */
     .fragment-two-image {
         padding: 8% 5%;
         transform: translateX(-42px);
@@ -819,7 +815,6 @@ body {
         height: 100%;
     }
 
-    /* PAGE NUMBERS */
     .page-number {
         bottom: 5%;
         font-size: 6px;
@@ -833,7 +828,6 @@ body {
         right: 7%;
     }
 
-    /* CLOSE */
     .close-book {
         top: 10px;
         right: 10px;
@@ -842,7 +836,6 @@ body {
         font-size: 20px;
     }
 
-    /* MODAL */
     .modal {
         padding: 15px;
     }
@@ -862,7 +855,9 @@ body {
     }
 }
 
-/* VERY SMALL PHONES */
+
+/* EXTRA SMALL PHONES */
+
 @media (max-width: 380px) {
 
     .book {
@@ -875,41 +870,44 @@ body {
     }
 
     .page.left {
-        padding-left: 12%;
+        padding-left: 11%;
     }
 
     .fragment-one-left .page-content,
     .fragment-two-left .page-content {
-        transform: translateY(1.1cm);
+        transform: translateY(1cm);
     }
 
     .book-header,
     .fragment-two-left .book-header {
-        font-size: 11px;
+        font-size: 9px;
     }
 
     .fragment,
     .fragment-two-left .fragment {
-        font-size: 5px;
-        margin-bottom: 13px;
+        font-size: 4px;
+        margin-bottom: 10px;
     }
 
     .manuscript,
     .fragment-two-left .manuscript,
     .right-text p {
-        font-size: 8px;
-        line-height: 1.45;
+        width: 76%;
+        max-width: 76%;
+        font-size: 6px;
+        line-height: 1.35;
     }
 
     .time-clue {
-        margin-top: 16px;
-        font-size: 5px;
+        margin-top: 14px;
+        font-size: 4px;
     }
 
     .fragment-two-image {
         transform: translateX(-36px);
     }
 }
+
 </style>
 </head>
 
@@ -955,8 +953,6 @@ body {
 </div>
 
 
-<!-- BOOK -->
-
 <div class="book-view" id="bookView">
 
     <button
@@ -967,8 +963,6 @@ body {
     </button>
 
     <div class="book" id="book">
-
-        <!-- FRAGMENT I -->
 
         <div class="spread active" id="fragmentOne">
 
@@ -1049,8 +1043,6 @@ body {
         </div>
 
 
-        <!-- FRAGMENT II -->
-
         <div class="spread" id="fragmentTwo">
 
             <section
@@ -1128,16 +1120,12 @@ body {
         </div>
 
 
-        <!-- PAGE TURN -->
-
         <div class="page-turn"></div>
 
     </div>
 
 </div>
 
-
-<!-- MODAL -->
 
 <div class="modal" id="modal">
 
@@ -1259,8 +1247,6 @@ function turnBackward() {
     }, 1000);
 }
 
-
-/* MODALS */
 
 const modal =
     document.getElementById("modal");
