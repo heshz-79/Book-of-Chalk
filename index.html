@@ -1091,26 +1091,18 @@ body {
         display: none;
     }
 
-
-    /* =====================================================
-       LANDSCAPE BOOK SIZE
-
-       The complete 3:2 spread must fit completely
-       inside the available screen width AND height.
-       ===================================================== */
-
     .book {
         width: min(
-            88vw,
-            calc(82dvh * 1.5)
+            80vw,
+            calc(66dvh * 1.5)
         );
 
         height: auto;
 
         aspect-ratio: 3 / 2;
 
-        max-width: 88vw;
-        max-height: 82dvh;
+        max-width: 80vw;
+        max-height: 66dvh;
 
         margin: 0;
 
@@ -1122,9 +1114,6 @@ body {
     .book-view.active .book {
         transform: none !important;
     }
-
-
-    /* LANDSCAPE TYPOGRAPHY */
 
     .page {
         padding: 5% 6%;
