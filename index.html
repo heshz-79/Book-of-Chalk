@@ -955,11 +955,6 @@ body {
 @media (max-width:700px) and (orientation:landscape) {
 
     .book-view {
-        /*
-         * IMPORTANT:
-         * Landscape becomes a real scrolling container.
-         * We intentionally stop using flex centering here.
-         */
         display: block;
 
         width: 100%;
@@ -971,8 +966,18 @@ body {
         overflow-y: auto;
 
         -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
+
+        touch-action: none;
+
         overscroll-behavior-y: contain;
+
+        scrollbar-width: none;
+    }
+
+    .book-view::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
     }
 
     .book {
@@ -1378,6 +1383,7 @@ function openBook() {
     document.querySelector(".title").style.opacity = "0";
 
     document.querySelector(".enter-hint").style.opacity = "0";
+
 }
 
 
@@ -1394,6 +1400,7 @@ function closeBook() {
     document.querySelector(".title").style.opacity = ".82";
 
     document.querySelector(".enter-hint").style.opacity = ".55";
+
 }
 
 
@@ -1418,6 +1425,7 @@ function turnForward() {
         book.classList.remove("turning-forward");
 
     }, 1000);
+
 }
 
 
@@ -1442,6 +1450,7 @@ function turnBackward() {
         book.classList.remove("turning-backward");
 
     }, 1000);
+
 }
 
 
@@ -1518,6 +1527,7 @@ function openModal(type) {
     warning.textContent = entry.warning;
 
     modal.classList.add("active");
+
 }
 
 
@@ -1552,6 +1562,107 @@ document.addEventListener("keydown", function(e) {
     }
 
 });
+
+
+/* =========================================================
+   LANDSCAPE TOUCH SCROLL
+   MANUAL VERTICAL SCROLL FOR MOBILE LANDSCAPE
+   ========================================================= */
+
+let touchStartY = 0;
+let lastTouchY = 0;
+let touchMoved = false;
+let scrollingTouch = false;
+
+function isLandscapePhone() {
+
+    return window.matchMedia(
+        "(max-width:700px) and (orientation:landscape)"
+    ).matches;
+
+}
+
+
+bookView.addEventListener(
+    "touchstart",
+    function(e) {
+
+        if (!isLandscapePhone()) return;
+
+        if (!bookView.classList.contains("active")) return;
+
+        touchStartY = e.touches[0].clientY;
+        lastTouchY = touchStartY;
+
+        touchMoved = false;
+        scrollingTouch = false;
+
+    },
+    { passive: true }
+);
+
+
+bookView.addEventListener(
+    "touchmove",
+    function(e) {
+
+        if (!isLandscapePhone()) return;
+
+        if (!bookView.classList.contains("active")) return;
+
+        const currentY =
+            e.touches[0].clientY;
+
+        const delta =
+            lastTouchY - currentY;
+
+        if (Math.abs(currentY - touchStartY) > 5) {
+
+            touchMoved = true;
+            scrollingTouch = true;
+
+        }
+
+        if (scrollingTouch) {
+
+            bookView.scrollTop =
+                bookView.scrollTop + delta;
+
+            e.preventDefault();
+
+        }
+
+        lastTouchY = currentY;
+
+    },
+    { passive: false }
+);
+
+
+bookView.addEventListener(
+    "touchend",
+    function(e) {
+
+        if (!isLandscapePhone()) return;
+
+        scrollingTouch = false;
+
+        /*
+         * If the finger actually moved,
+         * prevent accidental page clicks after scrolling.
+         */
+
+        if (touchMoved) {
+
+            setTimeout(function() {
+                touchMoved = false;
+            }, 100);
+
+        }
+
+    },
+    { passive: true }
+);
 
 </script>
 
