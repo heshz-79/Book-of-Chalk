@@ -460,6 +460,27 @@ body {
 }
 
 /* =========================
+   FRAGMENT II LEFT
+   ========================= */
+
+.fragment-two-left .page-content {
+    transform: translateY(4cm);
+}
+
+.fragment-two-left .book-header {
+    font-size: clamp(15px, 1.5vw, 21px);
+}
+
+.fragment-two-left .fragment {
+    font-size: 8px;
+    margin-bottom: 26px;
+}
+
+.fragment-two-left .manuscript {
+    font-size: clamp(12px, 1.1vw, 16px);
+}
+
+/* =========================
    FRAGMENT II IMAGE
    ========================= */
 
@@ -475,7 +496,7 @@ body {
 
     pointer-events: none;
 
-    transform: translateX(-35px);
+    transform: translateX(-70px);
 }
 
 .fragment-two-image img {
@@ -568,7 +589,7 @@ body {
 }
 
 /* =========================
-   PAGE TURN
+   PAGE TURN — BOOK ENGINE
    ========================= */
 
 .page-turn {
@@ -601,11 +622,13 @@ body {
     z-index: 30;
 }
 
-.book.turning .page-turn {
-    animation: pageTurn .95s ease-in-out;
+/* Forward: RIGHT → LEFT */
+
+.book.turning-forward .page-turn {
+    animation: pageTurnForward .95s ease-in-out;
 }
 
-@keyframes pageTurn {
+@keyframes pageTurnForward {
 
     0% {
         opacity: 0;
@@ -628,6 +651,38 @@ body {
     100% {
         opacity: 0;
         transform: rotateY(-180deg);
+    }
+}
+
+/* Backward: LEFT → RIGHT */
+
+.book.turning-backward .page-turn {
+    animation: pageTurnBackward .95s ease-in-out;
+}
+
+@keyframes pageTurnBackward {
+
+    0% {
+        opacity: 0;
+        transform: rotateY(-180deg);
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotateY(-88deg);
+    }
+
+    85% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotateY(0deg);
     }
 }
 
@@ -867,9 +922,28 @@ body {
         font-size: 7px;
     }
 
+    /* Fragment II mobile */
+
+    .fragment-two-left .page-content {
+        transform: translateY(2cm);
+    }
+
+    .fragment-two-left .book-header {
+        font-size: 14px;
+    }
+
+    .fragment-two-left .fragment {
+        font-size: 7px;
+        margin-bottom: 20px;
+    }
+
+    .fragment-two-left .manuscript {
+        font-size: 11px;
+    }
+
     .fragment-two-image {
         padding: 10% 5%;
-        transform: translateX(-18px);
+        transform: translateX(-53px);
     }
 
     .page-number {
@@ -1001,7 +1075,7 @@ body {
 
             <section
                 class="page right"
-                onclick="turnToFragmentTwo()">
+                onclick="turnForward()">
 
                 <div class="page-content">
 
@@ -1038,8 +1112,8 @@ body {
         <div class="spread" id="fragmentTwo">
 
             <section
-                class="page left"
-                onclick="turnBackToFragmentOne()">
+                class="page left fragment-two-left"
+                onclick="turnBackward()">
 
                 <div class="page-content">
 
@@ -1162,24 +1236,30 @@ function closeBook() {
     fragmentOne.classList.add("active");
     fragmentTwo.classList.remove("active");
 
+    book.classList.remove("turning-forward");
+    book.classList.remove("turning-backward");
+
     document.querySelector(".title").style.opacity = ".82";
     document.querySelector(".enter-hint").style.opacity = ".55";
 }
 
 
 /* =========================
-   PAGE NAVIGATION
-   RIGHT = FORWARD
-   LEFT = BACK
+   BOOK ENGINE
+   FORWARD = RIGHT → LEFT
+   BACKWARD = LEFT → RIGHT
    ========================= */
 
-function turnToFragmentTwo() {
+function turnForward() {
 
-    if (book.classList.contains("turning")) {
+    if (
+        book.classList.contains("turning-forward") ||
+        book.classList.contains("turning-backward")
+    ) {
         return;
     }
 
-    book.classList.add("turning");
+    book.classList.add("turning-forward");
 
     setTimeout(function() {
 
@@ -1190,18 +1270,22 @@ function turnToFragmentTwo() {
 
     setTimeout(function() {
 
-        book.classList.remove("turning");
+        book.classList.remove("turning-forward");
 
     }, 1000);
 }
 
-function turnBackToFragmentOne() {
 
-    if (book.classList.contains("turning")) {
+function turnBackward() {
+
+    if (
+        book.classList.contains("turning-forward") ||
+        book.classList.contains("turning-backward")
+    ) {
         return;
     }
 
-    book.classList.add("turning");
+    book.classList.add("turning-backward");
 
     setTimeout(function() {
 
@@ -1212,7 +1296,7 @@ function turnBackToFragmentOne() {
 
     setTimeout(function() {
 
-        book.classList.remove("turning");
+        book.classList.remove("turning-backward");
 
     }, 1000);
 }
