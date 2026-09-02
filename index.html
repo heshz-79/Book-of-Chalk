@@ -853,6 +853,7 @@ body {
 
     .title {
         top: 24px;
+        width: 90vw;
     }
 
     .title h1 {
@@ -893,14 +894,39 @@ body {
         height: 17%;
     }
 
+    /* =========================
+       MOBILE BOOK VIEW
+       ========================= */
+
     .book-view {
-        padding: 20px 10px;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
     }
 
     .book {
         width: 96vw;
+        max-width: 96vw;
+
         height: auto;
         aspect-ratio: 3 / 2;
+
+        max-height: none;
+
+        flex-shrink: 0;
+
+        transform:
+            perspective(1200px)
+            rotateX(1deg)
+            scale(.98);
+    }
+
+    .book-view.active .book {
+        transform:
+            perspective(1200px)
+            rotateX(1deg)
+            scale(1);
     }
 
     .page {
@@ -977,10 +1003,78 @@ body {
     .close-book {
         top: 12px;
         right: 12px;
+        width: 34px;
+        height: 34px;
+        font-size: 21px;
+    }
+
+    .modal {
+        padding: 20px;
     }
 
     .modal-content {
+        width: 92vw;
         padding: 35px 25px;
+    }
+
+    .modal h2 {
+        font-size: 23px;
+    }
+
+    .modal p {
+        font-size: 15px;
+    }
+}
+
+/* =========================
+   VERY SMALL PHONES
+   ========================= */
+
+@media (max-width: 380px) {
+
+    .book {
+        width: 94vw;
+        max-width: 94vw;
+    }
+
+    .page {
+        padding: 7% 6%;
+    }
+
+    .page.left {
+        padding-left: 13%;
+    }
+
+    .fragment-one-left .page-content,
+    .fragment-two-left .page-content {
+        transform: translateY(1.4cm);
+    }
+
+    .fragment-two-left .book-header,
+    .book-header {
+        font-size: 12px;
+    }
+
+    .fragment,
+    .fragment-two-left .fragment {
+        font-size: 6px;
+        margin-bottom: 15px;
+    }
+
+    .manuscript,
+    .fragment-two-left .manuscript,
+    .right-text p {
+        font-size: 9px;
+        line-height: 1.45;
+    }
+
+    .time-clue {
+        margin-top: 18px;
+        font-size: 6px;
+    }
+
+    .fragment-two-image {
+        transform: translateX(-42px);
     }
 }
 </style>
