@@ -905,24 +905,32 @@ body {
 
 /* =========================================================
    MOBILE LANDSCAPE ONLY
-   FIX FOR PHONE WHEN ROTATED HORIZONTALLY
+   SCROLL ENABLED WHEN PHONE IS ROTATED
    ========================================================= */
 
 @media (max-width: 700px) and (orientation: landscape) {
 
     .book-view {
-        padding: 0;
-        align-items: center;
+        padding: 10px 0;
+        align-items: flex-start;
         justify-content: center;
-        overflow: hidden;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        -webkit-overflow-scrolling: touch;
     }
 
     .book {
         width: 92vw;
         max-width: 92vw;
+
         height: auto;
         aspect-ratio: 3 / 2;
-        max-height: 90vh;
+
+        max-height: none;
+
+        flex-shrink: 0;
 
         transform:
             perspective(1200px)
@@ -962,6 +970,7 @@ body {
         max-width: 78%;
         font-size: 6px;
         line-height: 1.35;
+
         overflow-wrap: break-word;
         word-break: normal;
     }
@@ -976,6 +985,7 @@ body {
         max-width: 78%;
         font-size: 6px;
         line-height: 1.4;
+
         overflow-wrap: break-word;
         word-break: normal;
     }
