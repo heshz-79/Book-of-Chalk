@@ -495,6 +495,80 @@ body {
 }
 
 
+/* =========================================================
+   FRAGMENT III
+   ========================================================= */
+
+.fragment-three-left .page-content {
+    transform: translateY(4cm);
+}
+
+.fragment-three-left .book-header {
+    font-size: clamp(15px, 1.5vw, 21px);
+}
+
+.fragment-three-left .fragment {
+    font-size: 8px;
+    margin-bottom: 26px;
+}
+
+.fragment-three-title {
+    position: relative;
+    z-index: 5;
+
+    font-family: "IM Fell English", serif;
+    font-size: clamp(13px, 1.15vw, 17px);
+    font-weight: 400;
+    letter-spacing: .12em;
+
+    color: #c7c5b9;
+
+    margin-bottom: 18px;
+
+    text-shadow: 0 1px 3px rgba(0,0,0,.85);
+}
+
+.fragment-three-left .manuscript {
+    font-size: clamp(12px, 1.1vw, 16px);
+}
+
+
+/* FRAGMENT III VIDEO
+   SAME POSITION / SIZE SETTINGS AS FRAGMENT II IMAGE
+*/
+
+.fragment-three-video {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9% 7%;
+    pointer-events: none;
+    transform: translateX(-70px);
+}
+
+.fragment-three-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+
+    opacity: .94;
+
+    transform: rotate(-1deg);
+
+    filter:
+        contrast(1.08)
+        brightness(.86)
+        saturate(.78)
+        drop-shadow(0 4px 8px rgba(0,0,0,.35));
+
+    pointer-events: auto;
+}
+
+
 /* PAGE NUMBERS */
 
 .page-number {
@@ -922,25 +996,35 @@ body {
     }
 
     .fragment-one-left .page-content,
-    .fragment-two-left .page-content {
+    .fragment-two-left .page-content,
+    .fragment-three-left .page-content {
         transform: translateY(1.1cm);
     }
 
-    .fragment-two-left .book-header {
+    .fragment-two-left .book-header,
+    .fragment-three-left .book-header {
         font-size: 10px;
     }
 
-    .fragment-two-left .fragment {
+    .fragment-two-left .fragment,
+    .fragment-three-left .fragment {
         font-size: 5px;
         margin-bottom: 12px;
     }
 
-    .fragment-two-left .manuscript {
+    .fragment-two-left .manuscript,
+    .fragment-three-left .manuscript {
         width: 78%;
         max-width: 78%;
 
         font-size: 7px;
         line-height: 1.4;
+    }
+
+    .fragment-three-title {
+        font-size: 7px;
+        letter-spacing: .08em;
+        margin-bottom: 10px;
     }
 
     .fragment-two-image {
@@ -949,6 +1033,16 @@ body {
     }
 
     .fragment-two-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .fragment-three-video {
+        padding: 8% 5%;
+        transform: translateX(-42px);
+    }
+
+    .fragment-three-video video {
         width: 100%;
         height: 100%;
     }
@@ -1016,23 +1110,27 @@ body {
     }
 
     .fragment-one-left .page-content,
-    .fragment-two-left .page-content {
+    .fragment-two-left .page-content,
+    .fragment-three-left .page-content {
         transform: translateY(1cm);
     }
 
     .book-header,
-    .fragment-two-left .book-header {
+    .fragment-two-left .book-header,
+    .fragment-three-left .book-header {
         font-size: 9px;
     }
 
     .fragment,
-    .fragment-two-left .fragment {
+    .fragment-two-left .fragment,
+    .fragment-three-left .fragment {
         font-size: 4px;
         margin-bottom: 10px;
     }
 
     .manuscript,
     .fragment-two-left .manuscript,
+    .fragment-three-left .manuscript,
     .right-text p {
         width: 76%;
         max-width: 76%;
@@ -1048,6 +1146,15 @@ body {
 
     .fragment-two-image {
         transform: translateX(-36px);
+    }
+
+    .fragment-three-video {
+        transform: translateX(-36px);
+    }
+
+    .fragment-three-title {
+        font-size: 6px;
+        margin-bottom: 8px;
     }
 }
 
@@ -1093,14 +1200,6 @@ body {
     }
 
     .book {
-        /*
-         * REAL IMAGE:
-         * 4096 x 2748
-         *
-         * Landscape sizing is controlled
-         * by HEIGHT so the entire spread fits.
-         */
-
         height: 68dvh;
         width: auto;
 
@@ -1174,25 +1273,35 @@ body {
     }
 
     .fragment-one-left .page-content,
-    .fragment-two-left .page-content {
+    .fragment-two-left .page-content,
+    .fragment-three-left .page-content {
         transform: translateY(.25cm);
     }
 
-    .fragment-two-left .book-header {
+    .fragment-two-left .book-header,
+    .fragment-three-left .book-header {
         font-size: 8px;
     }
 
-    .fragment-two-left .fragment {
+    .fragment-two-left .fragment,
+    .fragment-three-left .fragment {
         font-size: 4px;
         margin-bottom: 8px;
     }
 
-    .fragment-two-left .manuscript {
+    .fragment-two-left .manuscript,
+    .fragment-three-left .manuscript {
         width: 78%;
         max-width: 78%;
 
         font-size: 5.5px;
         line-height: 1.35;
+    }
+
+    .fragment-three-title {
+        font-size: 5.5px;
+        letter-spacing: .08em;
+        margin-bottom: 7px;
     }
 
     .fragment-two-image {
@@ -1201,6 +1310,16 @@ body {
     }
 
     .fragment-two-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .fragment-three-video {
+        padding: 6% 5%;
+        transform: translateX(-28px);
+    }
+
+    .fragment-three-video video {
         width: 100%;
         height: 100%;
     }
@@ -1289,6 +1408,10 @@ body {
         <div class="book" id="book">
 
 
+            <!-- =====================================================
+                 FRAGMENT I
+                 ===================================================== -->
+
             <div class="spread active" id="fragmentOne">
 
                 <section class="page left fragment-one-left">
@@ -1368,6 +1491,10 @@ body {
             </div>
 
 
+            <!-- =====================================================
+                 FRAGMENT II
+                 ===================================================== -->
+
             <div class="spread" id="fragmentTwo">
 
                 <section
@@ -1420,7 +1547,9 @@ body {
                 </section>
 
 
-                <section class="page right">
+                <section
+                    class="page right"
+                    onclick="turnForward()">
 
                     <div class="page-content">
 
@@ -1438,6 +1567,89 @@ body {
 
                     <div class="page-number">
                         IV
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =====================================================
+                 FRAGMENT III
+                 ===================================================== -->
+
+            <div class="spread" id="fragmentThree">
+
+                <section
+                    class="page left fragment-three-left"
+                    onclick="turnBackward()">
+
+                    <div class="page-content">
+
+                        <div class="book-header">
+                            BOOK OF CHALK
+                        </div>
+
+                        <div class="fragment">
+                            Fragment III
+                        </div>
+
+                        <div class="fragment-three-title">
+                            HER FREQUENCY
+                        </div>
+
+                        <div class="manuscript">
+
+                            <em>
+                                This was recorded before the story changed.
+                            </em>
+
+                            <br><br>
+
+                            The image remains.
+
+                            <br><br>
+
+                            The truth does not.
+
+                        </div>
+
+                    </div>
+
+                    <div class="scratch one"></div>
+                    <div class="scratch two"></div>
+
+                    <div class="page-number">
+                        V
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="page right"
+                    onclick="turnForward()">
+
+                    <div class="page-content">
+
+                        <div class="fragment-three-video">
+
+                            <video
+                                src="fragment-3-her-frequency.mp4"
+                                controls
+                                playsinline
+                                preload="metadata"
+                                onclick="event.stopPropagation()">
+                            </video>
+
+                        </div>
+
+                    </div>
+
+                    <div class="scratch three"></div>
+
+                    <div class="page-number">
+                        VI
                     </div>
 
                 </section>
@@ -1500,6 +1712,13 @@ const fragmentOne =
 const fragmentTwo =
     document.getElementById("fragmentTwo");
 
+const fragmentThree =
+    document.getElementById("fragmentThree");
+
+
+/* =========================================================
+   OPEN / CLOSE BOOK
+   ========================================================= */
 
 function openBook() {
 
@@ -1507,6 +1726,7 @@ function openBook() {
 
     fragmentOne.classList.add("active");
     fragmentTwo.classList.remove("active");
+    fragmentThree.classList.remove("active");
 
     bookScroll.scrollTop = 0;
 
@@ -1522,6 +1742,7 @@ function closeBook() {
 
     fragmentOne.classList.add("active");
     fragmentTwo.classList.remove("active");
+    fragmentThree.classList.remove("active");
 
     book.classList.remove("turning-forward");
     book.classList.remove("turning-backward");
@@ -1534,6 +1755,11 @@ function closeBook() {
 }
 
 
+/* =========================================================
+   FORWARD PAGE TURN
+   I → II → III
+   ========================================================= */
+
 function turnForward() {
 
     if (
@@ -1541,14 +1767,26 @@ function turnForward() {
         book.classList.contains("turning-backward")
     ) return;
 
+
     book.classList.add("turning-forward");
+
 
     setTimeout(function() {
 
-        fragmentOne.classList.remove("active");
-        fragmentTwo.classList.add("active");
+        if (fragmentOne.classList.contains("active")) {
+
+            fragmentOne.classList.remove("active");
+            fragmentTwo.classList.add("active");
+
+        } else if (fragmentTwo.classList.contains("active")) {
+
+            fragmentTwo.classList.remove("active");
+            fragmentThree.classList.add("active");
+
+        }
 
     }, 470);
+
 
     setTimeout(function() {
 
@@ -1558,6 +1796,11 @@ function turnForward() {
 }
 
 
+/* =========================================================
+   BACKWARD PAGE TURN
+   III → II → I
+   ========================================================= */
+
 function turnBackward() {
 
     if (
@@ -1565,14 +1808,26 @@ function turnBackward() {
         book.classList.contains("turning-backward")
     ) return;
 
+
     book.classList.add("turning-backward");
+
 
     setTimeout(function() {
 
-        fragmentTwo.classList.remove("active");
-        fragmentOne.classList.add("active");
+        if (fragmentThree.classList.contains("active")) {
+
+            fragmentThree.classList.remove("active");
+            fragmentTwo.classList.add("active");
+
+        } else if (fragmentTwo.classList.contains("active")) {
+
+            fragmentTwo.classList.remove("active");
+            fragmentOne.classList.add("active");
+
+        }
 
     }, 470);
+
 
     setTimeout(function() {
 
